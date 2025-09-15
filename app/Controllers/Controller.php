@@ -24,7 +24,7 @@ class Controller{
             $params = extract($params);
         }
         $content = ob_get_clean();
-        require VIEWS.'layout.php';
+        require VIEWS.'templates/layout.php';
     }
 
    protected function getDB(){

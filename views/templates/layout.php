@@ -34,13 +34,13 @@ header("Access-Control-Allow-Headers: Content-Type");
             <div data-animation="default" class="navbar navbar-transparent w-nav" data-easing2="ease" data-easing="ease-in" data-collapse="medium" data-w-id="07b0e180-56f6-a47a-5992-f2a52cacf774" role="banner" data-duration="400" data-doc-height="1">
                 <div class="container w-container">
                     <div class="navbar-wrap">
-                        <a href="#" class="navbar-brand w-nav-brand">
+                        <a href="/fortime" class="navbar-brand w-nav-brand">
                             <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6480c35745aef364b9b9698d_Brand%20Logo.png'?>" loading="eager" alt="" class="navbar-brand-image"/>
                         </a>
                         <nav role="navigation" class="nav-menu w-nav-menu">
                             <div class="w-layout-vflex nav-menu-wrap">
-                                <a href="/find-jobs" class="nav-link w-nav-link">Find Jobs</a>
-                                <a href="/browse-companies" class="nav-link w-nav-link">Browse Companies</a>
+                                <a href="find-jobs" class="nav-link w-nav-link">Find Jobs</a>
+                                <a href="browse-companies" class="nav-link w-nav-link">Browse Companies</a>
                                 <div class="navbar-buttons-mobile">
                                     <a href="signup" class="button w-button">Sign Up</a>
                                     <a href="login" class="button button-outline w-button">Login</a>
@@ -66,7 +66,7 @@ header("Access-Control-Allow-Headers: Content-Type");
             </div>
         <?php endif ?>
         <?php if ($_GET['url'] === 'login' || $_GET['url'] === 'signup'): ?>
-            <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="auth-page-navbar w-nav">
+            <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="auth-page-navbar w-nav scroll-component">
                 <div class="container w-container">
                     <div class="auth-page-navbar-brand">
                         <a href="/fortime" class="navbar-brand w-nav-brand">
@@ -155,5 +155,23 @@ header("Access-Control-Allow-Headers: Content-Type");
         <script src="<?=SCRIPTS.'js'.DIRECTORY_SEPARATOR.'jquery-3.5.1.min.dc5e7f18c8.js'?>" type="text/javascript"></script>
         <script src="<?=SCRIPTS.'js'.DIRECTORY_SEPARATOR.'webflow.5dd3bb435.js'?>" type="text/javascript"></script>
         <!-- <script src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/js/webflow.5dd3bb435.js" type="text/javascript"></script> -->
+        <script>
+            const component = document.querySelector(".scroll-component");
+
+            window.addEventListener("scroll", () => {
+            // hauteur max avant que le fond soit totalement blanc (ajuste à ton goût)
+            const maxScroll = 300; 
+            // scroll actuel
+            const scrollY = window.scrollY;
+
+            // calcule un ratio entre 0 et 1
+            let opacity = scrollY / maxScroll;
+            if (opacity > 1) opacity = 1;
+            if (opacity < 0) opacity = 0;
+
+            // applique la couleur avec opacité
+            component.style.background = `rgba(255, 255, 255, ${opacity})`;
+            });
+        </script>
     </body>
 </html>
