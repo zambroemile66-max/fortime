@@ -24,6 +24,10 @@ $router->get('company-details', 'App\Controllers\CompanyController@companyDetail
 $router->get('login', 'App\Controllers\UserController@loginPage');
 $router->get('signup', 'App\Controllers\UserController@signupPage');
 
+$router->get('admin/dashboard', 'App\Controllers\Admin\DashboardController@dashboardPage');
+$router->get('admin/profile', 'App\Controllers\Admin\ProfileController@profilePage');
+$router->get('admin/company-profile', 'App\Controllers\Admin\CompanyProfileController@companyProfilePage');
+
 try {
     $router->run();
 } catch (NotFoundException $e) {
