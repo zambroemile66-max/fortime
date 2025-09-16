@@ -33,20 +33,24 @@
                                 <div class="w-users-userformheader auth-page-header">
                                     <h3>Get more opportunities</h3>
                                 </div>
-                                <form class="auth-page-form" method="post" data-wf-user-form-type="signup">
+                                <form action="signup" class="auth-page-form" method="post" data-wf-user-form-type="signup">
                                     <div class="form-row">
                                         <label for="Name" class="field-label">Name</label>
-                                        <input class="input-text w-input" maxlength="256" name="" data-name="" data-wf-user-field="wf-user-field-name" placeholder="" fieldType="data-wf-user-field-type" type="text" id="wf-sign-up-name" required=""/>
+                                        <input class="input-text w-input" maxlength="256" name="name" data-name="" data-wf-user-field="wf-user-field-name" placeholder="" fieldType="data-wf-user-field-type" type="text" id="wf-sign-up-name" required=""/>
                                     </div>
                                     <div class="form-row">
                                         <label for="Email" class="field-label">Email</label>
-                                        <input id="wf-sign-up-email" placeholder="" maxlength="256" name="Email" class="input-text w-input" type="email" autoComplete="username" required="" data-wf-user-form-input-type="email"/>
+                                        <input id="wf-sign-up-email" placeholder="" maxlength="256" name="email" class="input-text w-input" type="email" autoComplete="username" required="" data-wf-user-form-input-type="email"/>
                                     </div>
                                     <div class="form-row">
                                         <label for="Password" class="field-label">Password</label>
-                                        <input id="wf-sign-up-password" placeholder="" data-name="" maxlength="256" name="Password" class="input-text w-input" type="password" required="" data-wf-user-form-input-type="password"/>
+                                        <input id="wf-sign-up-password" placeholder="" data-name="" maxlength="256" name="password" class="input-text w-input" type="password" required="" data-wf-user-form-input-type="password"/>
                                     </div>
-                                    <input data-wait="Please wait..." type="submit" class="w-users-userformbutton button w-button" value="Continue"/>
+                                    <div style="display: none;" class="form-row">
+                                        <label for="type" class="field-label">Type</label>
+                                        <input readonly id="wf-sign-up-password" placeholder="" data-name="" maxlength="256" name="type" class="input-text w-input" type="text" value="job_seeker" data-wf-user-form-input-type="password"/>
+                                    </div>
+                                    <button data-wait="Please wait..." type="submit" class="w-users-userformbutton button w-button">Continue</button>
                                 </form>
                                 <div class="w-users-userformfooter auth-page-footer">
                                     <span class="text-r">
@@ -80,20 +84,24 @@
                                 <div class="w-users-userformheader auth-page-header">
                                     <h3>Get more opportunities</h3>
                                 </div>
-                                <form class="auth-page-form" method="post" data-wf-user-form-type="signup">
+                                <form action="signup" class="auth-page-form" method="post" data-wf-user-form-type="signup">
                                     <div class="form-row">
                                         <label for="Name" class="field-label">Name</label>
-                                        <input class="input-text w-input" maxlength="256" name="" data-name="" data-wf-user-field="wf-user-field-name" placeholder="Enter Your Full Name" fieldType="data-wf-user-field-type" type="text" id="wf-sign-up-name" required=""/>
+                                        <input class="input-text w-input" maxlength="256" name="name" data-name="" data-wf-user-field="wf-user-field-name" placeholder="Enter Your Full Name" fieldType="data-wf-user-field-type" type="text" id="wf-sign-up-name" required=""/>
                                     </div>
                                     <div class="form-row">
                                         <label for="Email" class="field-label">Email</label>
-                                        <input id="wf-sign-up-email" placeholder="" maxlength="256" name="Email" class="input-text w-input" type="email" autoComplete="username" required="" data-wf-user-form-input-type="email"/>
+                                        <input id="wf-sign-up-email" placeholder="" maxlength="256" name="email" class="input-text w-input" type="email" autoComplete="username" required="" data-wf-user-form-input-type="email"/>
                                     </div>
                                     <div class="form-row">
                                         <label for="Password" class="field-label">Password</label>
-                                        <input id="wf-sign-up-password" placeholder="" data-name="" maxlength="256" name="Password" class="input-text w-input" type="password" required="" data-wf-user-form-input-type="password"/>
+                                        <input id="wf-sign-up-password" placeholder="" data-name="" maxlength="256" name="password" class="input-text w-input" type="password" required="" data-wf-user-form-input-type="password"/>
                                     </div>
-                                    <input data-wait="Please wait..." type="submit" class="w-users-userformbutton button w-button" value="Continue"/>
+                                    <div style="display: none;" class="form-row">
+                                        <label for="type" class="field-label">Type</label>
+                                        <input readonly id="wf-sign-up-password" placeholder="" data-name="" maxlength="256" name="type" class="input-text w-input" type="text" value="company" data-wf-user-form-input-type="password"/>
+                                    </div>
+                                    <button  data-wait="Please wait..." type="submit" class="w-users-userformbutton button w-button">Continue</button>
                                 </form>
                                 <div class="w-users-userformfooter auth-page-footer">
                                     <span class="text-r">

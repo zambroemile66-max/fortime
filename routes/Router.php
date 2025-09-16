@@ -28,6 +28,6 @@ class Router{
             }
         }
 
-        throw new NotFoundException("la page est introuvable");
+        throw new NotFoundException("page");
     }
 }

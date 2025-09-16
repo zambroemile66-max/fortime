@@ -8,6 +8,7 @@
                     <a href="/company-details" class="breadcrumb-previous-page">Nomad /</a>
                     Social Media Assistant
                 </div>
+                
             </div>
             <div class="job-details-hero-banner">
                 <div class="job-details-banner-company">

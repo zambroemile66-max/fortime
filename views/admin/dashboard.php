@@ -5,7 +5,7 @@
                         <div class="_4-grid">
                             <div class="module blue">
                                 <div class="module-header minimal">
-                                    <h3 class="module-heading">Job opens</h3>
+                                    <h3 class="module-heading">Jobs Opened</h3>
                                 </div>
                                 <div class="module-main">
                                     <div class="module-number blue">4</div>
@@ -13,7 +13,7 @@
                             </div>
                             <div class="module">
                                 <div class="module-header minimal">
-                                    <h3 class="module-heading">New Customers</h3>
+                                    <h3 class="module-heading">New Candidates</h3>
                                 </div>
                                 <div class="module-main">
                                     <div class="module-number">12</div>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="module">
                                 <div class="module-header minimal">
-                                    <h3 class="module-heading">Open Tickets</h3>
+                                    <h3 class="module-heading">Emails receved</h3>
                                 </div>
                                 <div class="module-main">
                                     <div class="module-number">23</div>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="module">
                                 <div class="module-header minimal">
-                                    <h3 class="module-heading">On Hold</h3>
+                                    <h3 class="module-heading">Jobs closed</h3>
                                 </div>
                                 <div class="module-main">
                                     <div class="module-number">8</div>
@@ -171,7 +171,7 @@
                             <div class="module">
                                 <div class="module-header">
                                     <h3 class="module-heading">Latest Emails</h3>
-                                    <a href="/emails" class="module-button w-button">See All</a>
+                                    <a href="../admin/emails" class="module-button w-button">See All</a>
                                 </div>
                                 <div class="module-main">
                                     <div>

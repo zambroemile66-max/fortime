@@ -1,11 +1,15 @@
+<?php 
+    $locations = isset($params['company_details']->location) ? explode(',',$params['company_details']->location) : [];
+    $count_locations = count($locations);
+?>
 <section class="section hero-section">
             <div class="container w-container">
                 <div class="section-content-wrapper mg-medium">
                     <div class="breadcrumb checkout-breadcrumb">
                         <div class="text-r text-neutral-100">
-                            <a href="/home-v1" class="breadcrumb-previous-page">Home /</a>
-                            <a href="/browse-companies" class="breadcrumb-previous-page">Companies /</a>
-                            Stripe
+                            <a href="/fortime" class="breadcrumb-previous-page">Home /</a>
+                            <a href="../browse-companies" class="breadcrumb-previous-page">Companies /</a>
+                            <?=$params['company_details']->name?>
                         </div>
                     </div>
                     <div class="company-hero-box">
@@ -18,12 +22,12 @@
                         <div class="company-hero-inner">
                             <div class="company-hero-title">
                                 <div class="company-hero-name">
-                                    <h2 class="text-neutral-100">Stripe</h2>
+                                    <h2 class="text-neutral-100"><?=$params['company_details']->name?></h2>
                                     <div class="company-hero-name-tag text-r">
                                         <div>43 Jobs</div>
                                     </div>
                                 </div>
-                                <a href="#" class="text-r weight-600 text-brands-primary">https://stripe.com</a>
+                                <a href="#" class="text-r weight-600 text-brands-primary"><?=$params['company_details']->website?></a>
                             </div>
                             <div class="company-hero-summary">
                                 <div class="company-hero-summary-item">
@@ -36,7 +40,7 @@
                                     </div>
                                     <div>
                                         <div class="text-r color-neutral-80">Founded</div>
-                                        <div class="text-r weight-600 text-neutral-100">July 31, 2011</div>
+                                        <div class="text-r weight-600 text-neutral-100"><?=$params['company_details']->founded_date?></div>
                                     </div>
                                 </div>
                                 <div class="company-hero-summary-item">
@@ -49,7 +53,7 @@
                                     </div>
                                     <div>
                                         <div class="text-r color-neutral-80">Employees</div>
-                                        <div class="text-r weight-600 text-neutral-100">4000+</div>
+                                        <div class="text-r weight-600 text-neutral-100">300+</div>
                                     </div>
                                 </div>
                                 <div class="company-hero-summary-item">
@@ -63,7 +67,7 @@
                                     </div>
                                     <div>
                                         <div class="text-r color-neutral-80">Location</div>
-                                        <div class="text-r weight-600 text-neutral-100">20 countries</div>
+                                        <div class="text-r weight-600 text-neutral-100"><?=$count_locations > 1 ? $count_locations.' countries' : $count_locations.' countrie'?></div>
                                     </div>
                                 </div>
                                 <div class="company-hero-summary-item">
@@ -89,7 +93,7 @@
                                     </div>
                                     <div>
                                         <div class="text-r color-neutral-80">Industry</div>
-                                        <div class="text-r weight-600 text-neutral-100">Payment Gateway</div>
+                                        <div class="text-r weight-600 text-neutral-100"><?=$params['company_details']->industry?></div>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +118,7 @@
                         <div class="company-details-main-content-text">
                             <div class="company-details-main-content-col">
                                 <h3 class="text-neutral-100">Company Profile</h3>
-                                <p class="text-r text-neutral-100">Stripe is a software platform for starting and running internet businesses. Millions of businesses rely on Stripe’s software tools to accept payments, expand globally, and manage their businesses online. Stripe has been at the forefront of expanding internet commerce, powering new business models, and supporting the latest platforms, from marketplaces to mobile commerce sites. We believe that growing the GDP of the internet is a problem rooted in code and design, not finance. Stripe is built for developers, makers, and creators. We work on solving the hard technical problems necessary to build global economic infrastructure—from designing highly reliable systems to developing advanced machine learning algorithms to prevent fraud.</p>
+                                <p class="text-r text-neutral-100"><?=$params['company_details']->description?></p>
                             </div>
                             <div class="company-details-main-content-col">
                                 <h3 class="text-neutral-100">Company Profile</h3>
@@ -171,42 +175,15 @@
                             </div>
                             <div class="company-details-right-tech-inner">
                                 <div class="company-details-right-tech-grid">
-                                    <div id="w-node-f4cbfe95-d372-e6a3-9ba8-dce5bd520b85-cec1493a" class="company-details-right-tech-box">
-                                        <div>
-                                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487db15a394f56a82843fd1_Company%20Tech%20HTML.png" loading="lazy" alt=""/>
+                                    <?php $tech_stack = isset($params['company_details']->tech_stack) ? explode(',',$params['company_details']->tech_stack) : [] ?>
+                                    <?php foreach($tech_stack as $tech): ?>
+                                        <div id="w-node-f4cbfe95-d372-e6a3-9ba8-dce5bd520b85-cec1493a" class="company-details-right-tech-box">
+                                            <div>
+                                                <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487db15a394f56a82843fd1_Company%20Tech%20HTML.png" loading="lazy" alt=""/>
+                                            </div>
+                                            <div class="text-r text-neutral-100"><?=$tech?></div>
                                         </div>
-                                        <div class="text-r text-neutral-100">HTML 5</div>
-                                    </div>
-                                    <div id="w-node-efc3e2ec-5b68-4aed-e679-7faa44fa0dbf-cec1493a" class="company-details-right-tech-box">
-                                        <div>
-                                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487db15049d8f8a143663d5_Company%20Tech%20CSS.png" loading="lazy" alt=""/>
-                                        </div>
-                                        <div class="text-r text-neutral-100">CSS 3</div>
-                                    </div>
-                                    <div id="w-node-a30b7f30-4a82-75df-424c-12a056d109c0-cec1493a" class="company-details-right-tech-box">
-                                        <div>
-                                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487db14049d8f8a1436633b_Company%20Tech%20JavaScript.png" loading="lazy" alt=""/>
-                                        </div>
-                                        <div class="text-r text-neutral-100">JavaScript</div>
-                                    </div>
-                                    <div id="w-node-_5db5a657-ef41-1a16-ca28-62f54c1a8bdd-cec1493a" class="company-details-right-tech-box">
-                                        <div>
-                                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487db140ca7facbd3ecb472_Company%20Tech%20Ruby.png" loading="lazy" alt=""/>
-                                        </div>
-                                        <div class="text-r text-neutral-100">Ruby</div>
-                                    </div>
-                                    <div id="w-node-_34f167a2-3bc2-8781-c3e1-d26e7face309-cec1493a" class="company-details-right-tech-box">
-                                        <div>
-                                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487db154e4c6422f50e6275_Company%20Tech%20Mixpanel.png" loading="lazy" alt=""/>
-                                        </div>
-                                        <div class="text-r text-neutral-100">Mixpanel</div>
-                                    </div>
-                                    <div id="w-node-a7f3901a-47a5-6dc3-a1a8-3de49fd65a97-cec1493a" class="company-details-right-tech-box">
-                                        <div>
-                                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487db15cbba18ae13654010_Company%20Tech%20Framer.png" loading="lazy" alt=""/>
-                                        </div>
-                                        <div class="text-r text-neutral-100">Framer</div>
-                                    </div>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                         </div>
@@ -216,26 +193,12 @@
                                 <div class="text-r text-neutral-80">Stripe offices spread across 20 countries</div>
                             </div>
                             <div class="company-details-right-location-list">
-                                <div class="company-details-right-location-box">
-                                    <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487df2ec58d392b8a2b22c4_Location%20Flag%20US.png" loading="lazy" alt="" class="company-details-right-location-flag"/>
-                                    <div class="text-r weight-600 text-neutral-100">United States</div>
-                                </div>
-                                <div class="company-details-right-location-box">
-                                    <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487df2e79eff354cee5c0b2_Location%20Flag%20England.png" loading="lazy" alt="" class="company-details-right-location-flag"/>
-                                    <div class="text-r weight-600 text-neutral-100">England</div>
-                                </div>
-                                <div class="company-details-right-location-box">
-                                    <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487df2e2569738adc20f5a7_Location%20Flag%20Japan.png" loading="lazy" alt="" class="company-details-right-location-flag"/>
-                                    <div class="text-r weight-600 text-neutral-100">Japan</div>
-                                </div>
-                                <div class="company-details-right-location-box">
-                                    <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487df2ea394f56a8288db36_Location%20Flag%20Australia.png" loading="lazy" alt="" class="company-details-right-location-flag"/>
-                                    <div class="text-r weight-600 text-neutral-100">Australia</div>
-                                </div>
-                                <div class="company-details-right-location-box">
-                                    <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487df2f78fc8182d60d610f_Location%20Flag%20China.png" loading="lazy" alt="" class="company-details-right-location-flag"/>
-                                    <div class="text-r weight-600 text-neutral-100">China</div>
-                                </div>
+                                <?php foreach($locations as $location): ?>
+                                    <div class="company-details-right-location-box">
+                                        <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487df2e79eff354cee5c0b2_Location%20Flag%20England.png" loading="lazy" alt="" class="company-details-right-location-flag"/>
+                                        <div class="text-r weight-600 text-neutral-100"><?=$location?></div>
+                                    </div>
+                                <?php endforeach ?>
                             </div>
                         </div>
                     </div>

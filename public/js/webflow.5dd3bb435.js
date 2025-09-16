@@ -25690,7 +25690,7 @@ this in the docs: http://dev.apollodata.com/core/fragments.html#unique-names`) :
     var fDe, pDe, JH, tV = w( () => {
         "use strict";
         fDe = "(^|;)\\s*wf-csrf\\s*=\\s*([^;]+)",
-        pDe = "https://jobhuntly-template.webflow.io/.wf_graphql/csrf",
+        pDe = "",
         JH = !1
     }
     );

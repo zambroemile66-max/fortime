@@ -1,3 +1,6 @@
+<?php
+    require VIEWS.'components/alert.php';
+?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com -->
 <!-- Last Published: Mon Jun 14 2021 20:30:44 GMT+0000 (Coordinated Universal Time) -->
@@ -32,7 +35,7 @@
                                 <div class="sidebar-link-text">Dashboard</div>
                             </a>
                             <link rel="prefetch" href="/"/>
-                            <a href="/tasks" class="sidebar-link w-inline-block">
+                            <a href="../admin/emails" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Emails</div>
                             </a>
@@ -42,12 +45,12 @@
                                 <div class="sidebar-link-text">Company profile</div>
                             </a>
                             <link rel="prefetch" href="/emails"/>
-                            <a href="/calender" class="sidebar-link w-inline-block">
+                            <a href="../admin/applicants" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'users-three.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">All Applicants</div>
                             </a>
                             <link rel="prefetch" href="/calender"/>
-                            <a href="/boards" class="sidebar-link w-inline-block">
+                            <a href="../admin/jobs" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'clipboard-text.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Job listing</div>
                             </a>

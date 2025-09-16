@@ -23,18 +23,18 @@
                                 <div class="w-users-userformheader auth-page-header">
                                     <h3>Welcome Back, Dude</h3>
                                 </div>
-                                <form class="auth-page-form" data-wf-user-form-type="login" data-wf-user-form-redirect="/" method="post">
+                                <form action="login" class="auth-page-form" data-wf-user-form-type="login" data-wf-user-form-redirect="/" method="post">
                                     <div class="form-row">
                                         <label for="Email" class="field-label">
                                             <p>Email Address</p>
                                         </label>
-                                        <input maxlength="256" placeholder="" name="Email" id="wf-log-in-email" class="input-text w-input" type="email" autoComplete="username" required="" data-wf-user-form-input-type="email"/>
+                                        <input maxlength="256" placeholder="" name="email" id="wf-log-in-email" class="input-text w-input" type="email" autoComplete="username" required="" data-wf-user-form-input-type="email"/>
                                     </div>
                                     <div class="form-row">
                                         <label for="Password" class="field-label">Password</label>
-                                        <input maxlength="256" placeholder="" name="Password" id="wf-log-in-password" class="input-text w-input" type="password" required="" data-wf-user-form-input-type="password"/>
+                                        <input maxlength="256" placeholder="" name="password" id="wf-log-in-password" class="input-text w-input" type="password" required="" data-wf-user-form-input-type="password"/>
                                     </div>
-                                    <input type="submit" data-wait="Please wait..." class="w-users-userformbutton button w-button" value="Log In"/>
+                                    <button data-wait="Please wait..." type="submit" class="w-users-userformbutton button w-button">Continue</button>
                                 </form>
                                 <div class="w-users-userformfooter auth-page-footer">
                                     <span class="text-r">

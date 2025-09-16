@@ -2,6 +2,9 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 ?>
+<?php
+    require VIEWS.'components/alert.php';
+?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com -->
 <!-- Last Published: Mon Sep 23 2024 02:29:26 GMT+0000 (Coordinated Universal Time) -->
