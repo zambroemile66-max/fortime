@@ -43,25 +43,27 @@
                     </div>
                     <div class="section-content">
                         <div class="grid-3-column">
-                            <a id="w-node-c77a323f-5989-c4b9-a51c-a39ada385073-347409a8" href="company-details" class="company-box w-inline-block">
-                                <div class="company-card-title">
-                                    <div class="company-logo">
-                                        <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt=""/>
+                            <?php foreach($params['companies'] as $company) : ?>
+                                <a id="w-node-c77a323f-5989-c4b9-a51c-a39ada385073-347409a8" href="company-details/<?=$company->id?>" class="company-box w-inline-block">
+                                    <div class="company-card-title">
+                                        <div class="company-logo">
+                                            <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt=""/>
+                                        </div>
+                                        <div class="tag">
+                                            <div class="text-r text-brands-primary">3 Jobs</div>
+                                        </div>
                                     </div>
-                                    <div class="tag">
-                                        <div class="text-r text-brands-primary">3 Jobs</div>
+                                    <div class="company-card-description">
+                                        <h4><?=$company->name?></h4>
+                                        <p class="text-l text-neutral-80"><?=substr_replace($company->description,'...',100)?></p>
                                     </div>
-                                </div>
-                                <div class="company-card-description">
-                                    <h4>Nomad</h4>
-                                    <p class="text-l text-neutral-80">Nomad is located in Paris, France. Nomad has generates $728,000 in sales (USD).</p>
-                                </div>
-                                <div class="company-card-category-label-wrapper">
-                                    <div class="label-category label-category-design">
-                                        <div class="text-s weight-600">Bussiness Services</div>
+                                    <div class="company-card-category-label-wrapper">
+                                        <div class="label-category label-category-design">
+                                            <div class="text-s weight-600">Bussiness Services</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            <?php endforeach ?>
                         </div>
                     </div>
                 </div>

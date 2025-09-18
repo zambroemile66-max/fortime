@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Exceptions\NotFoundException;
 
 class Company extends Model{
-    protected $table = 'company';
+    protected string $table = 'company';
 
     public function insertCompany(string $userId) {
         // Commence une transaction
@@ -24,9 +24,13 @@ class Company extends Model{
             $this->db->getPDO()->rollBack();
         }
     }
-
-    public function getAllCompanies(){
+    public function getCompanies(){
         $sql = "SELECT id,name,logo_url,description FROM $this->table LIMIT 3";
+        $stmt = $this->db->getPDO()->query($sql);
+        return $stmt->fetchAll();
+    }
+    public function getAllCompanies(){
+        $sql = "SELECT id,name,logo_url,description FROM $this->table";
         $stmt = $this->db->getPDO()->query($sql);
         return $stmt->fetchAll();
     }

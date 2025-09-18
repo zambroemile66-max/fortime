@@ -42,19 +42,19 @@ header("Access-Control-Allow-Headers: Content-Type");
                         </a>
                         <nav role="navigation" class="nav-menu w-nav-menu">
                             <div class="w-layout-vflex nav-menu-wrap">
-                                <a href="find-jobs" class="nav-link w-nav-link">Find Jobs</a>
-                                <a href="browse-companies" class="nav-link w-nav-link">Browse Companies</a>
+                                <a href="/fortime/find-jobs" class="nav-link w-nav-link">Find Jobs</a>
+                                <a href="/fortime/browse-companies" class="nav-link w-nav-link">Browse Companies</a>
                                 <div class="navbar-buttons-mobile">
-                                    <a href="signup" class="button w-button">Sign Up</a>
-                                    <a href="login" class="button button-outline w-button">Login</a>
+                                    <a href="/fortime/signup" class="button w-button">Sign Up</a>
+                                    <a href="/fortime/login" class="button button-outline w-button">Login</a>
                                 </div>
                             </div>
                         </nav>
                         <div class="navbar-button">
                             <div class="navbar-button-inner">
-                                <a href="login" class="button button-text-only w-button">Login</a>
+                                <a href="/fortime/login" class="button button-text-only w-button">Login</a>
                                 <div class="vertical-divider"></div>
-                                <a href="signup" class="button w-button">Sign Up</a>
+                                <a href="/fortime/signup" class="button w-button">Sign Up</a>
                             </div>
                         </div>
                         <div class="menu-button w-nav-button">

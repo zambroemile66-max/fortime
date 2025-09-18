@@ -1,3 +1,6 @@
+<?php
+    echo isset($_POST['field']) ? $_POST['field'] : null
+?>
 <section class="section hero-section">
             <div class="container z-index-10 w-container">
                 <div class="section-content-wrapper mg-medium">

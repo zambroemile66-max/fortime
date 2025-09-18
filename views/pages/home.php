@@ -147,6 +147,35 @@
                                     </div>
                                 </div>
                             </a>
+                            <?php foreach($params['jobs'] as $job) : ?>
+                                <a id="w-node-e026f1a0-2092-2606-fedb-be05c5572b3c-b15929cd" href="jobs-details/<?=$job->id?>" class="lastest-jobs-box w-inline-block">
+                                    <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt="" class="lastest-job-company-logo"/>
+                                    <div class="job-item-content">
+                                        <div class="display-3 text-neutral-100"><?=$job->title?></div>
+                                        <div class="job-item-details">
+                                            <div><?=$job->name?></div>
+                                            <div class="svg-icon w-embed">
+                                                <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle opacity="0.3" cx="2" cy="2" r="2" fill="currentColor"/>
+                                                </svg>
+                                            </div>
+                                            <div><?=$job->location?></div>
+                                        </div>
+                                        <div class="job-item-label-wrapper">
+                                            <div class="lastest-jobs-label-work">
+                                                <div class="text-s weight-600"><?=$job->type?></div>
+                                            </div>
+                                            <div class="vertical-divider"></div>
+                                            <?php $categories = !empty($job->category)  ? explode(',',$job->category) : []?>
+                                            <?php foreach($categories as $category) : ?>
+                                                <div class="label-category lastest-jobs-label-category-design">
+                                                    <div class="text-s weight-600"><?=$category?></div>
+                                                </div>
+                                            <?php endforeach ?>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach ?>
                         </div>
                     </div>
                 </div>

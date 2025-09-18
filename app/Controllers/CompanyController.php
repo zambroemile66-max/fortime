@@ -5,7 +5,8 @@ use App\Models\Company;
 
 class CompanyController extends Controller{
     public function browseCompaniesPage(){
-        $this->view('pages.browse-companies');
+        $companies = (new Company($this->getDB()))->getAllCompanies();
+        $this->view('pages.browse-companies',compact('companies'));
     }
     public function companyDetailsPage(string $id){
         $company_details = (new Company($this->getDB()))->getCompany($id);
@@ -15,6 +16,6 @@ class CompanyController extends Controller{
         return (new Company($this->getDB()))->insertCompany($userId);
     }
     public function retrieveCompany(){
-        return (new Company($this->getDB()))->getAllCompanies();
+        return (new Company($this->getDB()))->getCompanies();
     }
 }

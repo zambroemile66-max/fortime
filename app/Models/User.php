@@ -5,7 +5,7 @@ namespace App\Models;
 use PDO;
 
 class User extends Model{
-    protected $table = 'user';
+    protected string $table = 'user';
 
     public function insertUser(string $name, string $email, string $hashedPassword, string $type) {
         $sql = "INSERT INTO $this->table (name, email, password_hash, type) 

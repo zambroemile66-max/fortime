@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 class BlogController extends Controller{
     public function homePage(){
+        $jobs = (new JobController($this->getDB()))->retrieveJobs();
         $companies = (new CompanyController($this->getDB()))->retrieveCompany();
-        return $this->view('pages.home', compact('companies'));
+        return $this->view('pages.home', compact('companies', 'jobs'));
     }
     public function error404(string $error){
         header("HTTP/1.1 404 Not Found");

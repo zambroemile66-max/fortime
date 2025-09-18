@@ -13,8 +13,8 @@ define('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']).DIRECTORY_SEPARATOR);
 $router = new Router($_GET['url']);
 $router->get('', 'App\Controllers\BlogController@homePage');
 
-$router->get('jobs-details', 'App\Controllers\JobController@jobsDetailsPage');
-$router->get('job-application', 'App\Controllers\JobController@jobApplicationPage');
+$router->get('jobs-details/:id', 'App\Controllers\JobController@jobsDetailsPage');
+$router->get('job-application/:id', 'App\Controllers\JobController@jobApplicationPage');
 $router->get('find-jobs', 'App\Controllers\JobController@findJobsPage');
 $router->get('search', 'App\Controllers\JobController@searchPage');
 

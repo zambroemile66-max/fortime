@@ -1,3 +1,6 @@
+<?php
+    var_dump($params['jobs_details']);
+?>
 <section class="section hero-section">
     <div class="container w-container">
         <div class="job-details-hero">
@@ -5,8 +8,8 @@
                 <div class="text-r">
                     <a href="/fortime" class="breadcrumb-previous-page">Home /</a>
                     <a href="/browse-companies" class="breadcrumb-previous-page">Companies /</a>
-                    <a href="/company-details" class="breadcrumb-previous-page">Nomad /</a>
-                    Social Media Assistant
+                    <a href="/fortime/company-details/<?=$params['jobs_details']->comp_id?>" class="breadcrumb-previous-page"><?=$params['jobs_details']->name?> /</a>
+                    <?=$params['jobs_details']->title?>
                 </div>
                 
             </div>
@@ -27,21 +30,21 @@
                         </a>
                     </div>
                     <div class="job-details-banner-title">
-                        <h3 class="text-neutral-100">Social Media Assistant</h3>
+                        <h3 class="text-neutral-100"><?=$params['jobs_details']->title?></h3>
                         <div class="featured-jobs-title-row text-r text-neutral-80">
-                            <div>Stripe</div>
+                            <div><?=$params['jobs_details']->name?></div>
                             <div class="svg-icon w-embed">
                                 <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle opacity="0.3" cx="2" cy="2" r="2" fill="currentColor"/>
                                 </svg>
                             </div>
-                            <div>Paris, France</div>
+                            <div><?=$params['jobs_details']->location?></div>
                             <div class="svg-icon w-embed">
                                 <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle opacity="0.3" cx="2" cy="2" r="2" fill="currentColor"/>
                                 </svg>
                             </div>
-                            <div>Full-Time</div>
+                            <div><?=$params['jobs_details']->type?></div>
                         </div>
                     </div>
                 </div>
@@ -58,9 +61,9 @@
                         </div>
                     </a>
                     <div class="vertical-divider"></div>
-                    <a href="job-application" class="button button-l w-button">Apply</a>
+                    <a href="/fortime/job-application/<?=$params['jobs_details']->job_id?>" class="button button-l w-button">Apply</a>
                 </div>
-                <a href="job-application" class="button button-l job-details-banner-apply w-button">Apply</a>
+                <a href="/fortime/job-application/<?=$params['jobs_details']->job_id?>" class="button button-l job-details-banner-apply w-button">Apply</a>
             </div>
         </div>
     </div>
@@ -70,59 +73,50 @@
         <div class="job-details-content">
             <div class="job-details-content-paragraph w-richtext">
                 <h3>Description</h3>
-                <p>Stripe is looking for Social Media Marketing expert to help manage our online networks. You will be responsible for monitoring our social media channels, creating content, finding effective ways to engage the community and incentivize others to engage on our channels.</p>
+                <p><?=$params['jobs_details']->job_des?></p>
             </div>
             <div class="job-details-content-summary">
                 <div class="job-details-summary-about">
                     <h3 class="text-neutral-100">About this role</h3>
                     <div class="job-details-summary-about-row">
                         <div class="text-r text-neutral-80">Apply Before</div>
-                        <div class="text-r weight-600 text-neutral-100">July 31, 2021</div>
+                        <div class="text-r weight-600 text-neutral-100"><?=$params['jobs_details']->apply_before?></div>
                     </div>
                     <div class="job-details-summary-about-row">
                         <div class="text-r text-neutral-80">Job Posted On</div>
-                        <div class="text-r weight-600 text-neutral-100">July 1, 2021</div>
+                        <div class="text-r weight-600 text-neutral-100"><?=$params['jobs_details']->posted_on?></div>
                     </div>
                     <div class="job-details-summary-about-row">
                         <div class="text-r text-neutral-80">Job Type</div>
-                        <div class="text-r weight-600 text-neutral-100">Full-Time</div>
+                        <div class="text-r weight-600 text-neutral-100"><?=$params['jobs_details']->type?></div>
                     </div>
                     <div class="job-details-summary-about-row">
                         <div class="text-r text-neutral-80">Salary</div>
-                        <div class="text-r weight-600 text-neutral-100">$75k-$85k USD</div>
+                        <div class="text-r weight-600 text-neutral-100"><?=$params['jobs_details']->salary?> fcfa</div>
                     </div>
                 </div>
                 <div class="horizontal-divider"></div>
                 <div class="job-details-summary-categories">
                     <h3 class="text-neutral-100">Categories</h3>
                     <div class="job-details-summary-categories-list">
-                        <div class="featured-jobs-category-name featured-jobs-category-marketing">
-                            <div class="text-s weight-600">Marketing</div>
-                        </div>
-                        <div class="featured-jobs-category-name featured-jobs-category-design">
-                            <div class="text-s weight-600">Design</div>
-                        </div>
+                        <?php $categories = !empty($params['jobs_details']->category) ? explode(',',$params['jobs_details']->category) : [] ?>
+                        <?php foreach($categories as $category) : ?>
+                            <div class="featured-jobs-category-name featured-jobs-category-design">
+                                <div class="text-s weight-600"><?=$category?></div>
+                            </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
                 <div class="horizontal-divider"></div>
                 <div class="job-details-summary-skills">
                     <h3 class="text-neutral-100">Required Skills</h3>
                     <div class="job-details-summary-skills-list">
-                        <div class="job-details-summary-skills-needed text-r">
-                            <div>Project Management</div>
-                        </div>
-                        <div class="job-details-summary-skills-needed text-r">
-                            <div>Copywriting</div>
-                        </div>
-                        <div class="job-details-summary-skills-needed text-r">
-                            <div>Social Media Marketing</div>
-                        </div>
-                        <div class="job-details-summary-skills-needed text-r">
-                            <div>English</div>
-                        </div>
-                        <div class="job-details-summary-skills-needed text-r">
-                            <div>Copy Editing</div>
-                        </div>
+                        <?php $skills = !empty($params['jobs_details']->skills) ? explode(',',$params['jobs_details']->skills) : [] ?>
+                        <?php foreach($skills as $skill) : ?>
+                            <div class="job-details-summary-skills-needed text-r">
+                                <div><?=$skill?></div>
+                            </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>
@@ -133,12 +127,12 @@
     <div class="container w-container">
         <div class="job-details-company">
             <div class="job-details-company-content">
-                <a href="/company-details" class="job-details-company-content-more w-inline-block">
+                <a href="/fortime/company-details/<?=$params['jobs_details']->comp_id?>" class="job-details-company-content-more w-inline-block">
                     <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481674cddb9563d1f7298fb_ClassPass%20Logo.svg'?>" loading="lazy" alt="" class="job-details-company-content-logo"/>
                     <div class="job-details-company-content-name">
-                        <h3 class="text-neutral-100">Stripe</h3>
+                        <h3 class="text-neutral-100"><?=$params['jobs_details']->name?></h3>
                         <div class="section-headline-link">
-                            <div>Read more about Stripe</div>
+                            <div>Read more about <?=$params['jobs_details']->name?></div>
                             <div class="svg-icon w-embed">
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20.3945 11.7261L5.39453 11.7261" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -148,7 +142,7 @@
                         </div>
                     </div>
                 </a>
-                <div class="text-r color-neutral-80">Stripe is a technology company that builds economic infrastructure for the internet. Businesses of every size—from new startups to public companies—use our software to accept payments and manage their businesses online.</div>
+                <div class="text-r color-neutral-80"><?=$params['jobs_details']->comp_des?></div>
             </div>
             <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6487556b38b327ed912120cb_Job%20Details%20Company%20Profile.png'?>" loading="lazy" alt="Jobhuntly Company Activities" class="job-details-company-profile"/>
         </div>
