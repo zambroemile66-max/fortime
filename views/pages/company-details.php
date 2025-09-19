@@ -439,7 +439,7 @@
                     </div>
                     <div class="section-content">
                         <div class="grid-2-column lastest-job-grid">
-                            <a id="w-node-_6558ebea-da99-112d-118d-633712f4f6e0-cec1493a" href="#" class="lastest-jobs-box w-inline-block">
+                            <!-- <a id="w-node-_6558ebea-da99-112d-118d-633712f4f6e0-cec1493a" href="#" class="lastest-jobs-box w-inline-block">
                                 <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt="" class="lastest-job-company-logo"/>
                                 <div class="job-item-content">
                                     <div class="display-3 text-neutral-100">Social Media Assistant</div>
@@ -465,7 +465,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>

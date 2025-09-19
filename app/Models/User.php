@@ -24,7 +24,7 @@ class User extends Model{
     }
 
     public function checkIfUserExists(string $email){
-        $sql = "SELECT password_hash,type FROM $this->table WHERE email = ?";
+        $sql = "SELECT id,password_hash,type FROM $this->table WHERE email = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

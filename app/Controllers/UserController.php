@@ -13,23 +13,36 @@ class UserController extends Controller{
     public function login(){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             try {
-                $userChecked = (new User($this->getDB()))->checkIfUserExists($_POST['email']);
-                if (!empty($userChecked) && password_verify($_POST['password'], $userChecked['password_hash'])) {
+                $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+
+                $userChecked = (new User($this->getDB()))->checkIfUserExists($email);
+                if ($userChecked && password_verify($_POST['password'], $userChecked['password_hash'])) {
+                    // Protection fixation de session
+                    session_regenerate_id(true);
+                    $_SESSION['auth'] =  $userChecked['type'] === 'company' ? ['admin' => $userChecked['id']] : ['user' => $userChecked['id']];
                     $this->userRedirect($userChecked['type']);
-                }else{
+                } else {
                     throw new Exception('Mot de passe ou email incorrect');
                 }
             } catch (\Throwable $th) {
+                // Message générique pour l'utilisateur, log possible côté serveur
                 $_SESSION['error'] = "❌ Erreur : " . $th->getMessage();
                 header('Location: login');
                 exit;
             }
         }
     }
-
     public function userRedirect(string $userType) : void {
         $_SESSION['success'] = "✅ Utilisateur connecté";
-        $userType === 'company' ? header('Location: admin/dashboard') : header('Location: /fortime');
+        if($userType === 'company'){
+            header('Location: admin/dashboard');
+            exit;
+        }elseif($userType === 'job_seeker'){
+            header('Location: /fortime');
+            exit;
+        }else{
+            throw new Exception('Mot de passe ou email incorrect');
+        }
     }
     public function signupPage() {
         return $this->view('pages.signup');

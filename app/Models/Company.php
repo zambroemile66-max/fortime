@@ -47,4 +47,14 @@ class Company extends Model{
 
         throw new NotFoundException("company");
     }
+    public function getCompanyId(string $id){
+        $sql = "SELECT id FROM $this->table WHERE user_id = ?";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+
+        if ($result && is_object($result)) {
+            return $result;
+        }
+    }
 }

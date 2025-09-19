@@ -129,9 +129,9 @@
                         <div>+</div>
                     </div>
                     <nav class="add-menu w-dropdown-list">
-                        <a href="/tasks" class="add-link w-inline-block">
+                        <a href="../admin/job-publish" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                            <div class="sidebar-link-text">New Task</div>
+                            <div class="sidebar-link-text">New Job</div>
                         </a>
                         <a href="/tasks" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>

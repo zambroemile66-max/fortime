@@ -1,6 +1,3 @@
-<?php
-    var_dump($params['jobs_details']);
-?>
 <section class="section hero-section">
     <div class="container w-container">
         <div class="job-details-hero">
@@ -93,18 +90,6 @@
                     <div class="job-details-summary-about-row">
                         <div class="text-r text-neutral-80">Salary</div>
                         <div class="text-r weight-600 text-neutral-100"><?=$params['jobs_details']->salary?> fcfa</div>
-                    </div>
-                </div>
-                <div class="horizontal-divider"></div>
-                <div class="job-details-summary-categories">
-                    <h3 class="text-neutral-100">Categories</h3>
-                    <div class="job-details-summary-categories-list">
-                        <?php $categories = !empty($params['jobs_details']->category) ? explode(',',$params['jobs_details']->category) : [] ?>
-                        <?php foreach($categories as $category) : ?>
-                            <div class="featured-jobs-category-name featured-jobs-category-design">
-                                <div class="text-s weight-600"><?=$category?></div>
-                            </div>
-                        <?php endforeach ?>
                     </div>
                 </div>
                 <div class="horizontal-divider"></div>

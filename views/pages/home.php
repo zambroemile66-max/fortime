@@ -55,25 +55,6 @@
                     </div>
                    <div class="section-content">
                         <div class="grid-3-column">
-                            <a id="w-node-c77a323f-5989-c4b9-a51c-a39ada385073-347409a8" href="company-details" class="company-box w-inline-block">
-                                <div class="company-card-title">
-                                    <div class="company-logo">
-                                        <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt=""/>
-                                    </div>
-                                    <div class="tag">
-                                        <div class="text-r text-brands-primary">3 Jobs</div>
-                                    </div>
-                                </div>
-                                <div class="company-card-description">
-                                    <h4>Nomad</h4>
-                                    <p class="text-l text-neutral-80">Nomad is located in Paris, France. Nomad has generates $728,000 in sales (USD).</p>
-                                </div>
-                                <div class="company-card-category-label-wrapper">
-                                    <div class="label-category label-category-design">
-                                        <div class="text-s weight-600">Bussiness Services</div>
-                                    </div>
-                                </div>
-                            </a>
                             <?php foreach($params['companies'] as $company) : ?>
                                 <a id="w-node-c77a323f-5989-c4b9-a51c-a39ada385073-347409a8" href="company-details/<?=$company->id?>" class="company-box w-inline-block">
                                     <div class="company-card-title">
@@ -120,33 +101,6 @@
                     </div>
                     <div class="section-content">
                         <div class="grid-2-column lastest-job-grid">
-                            <a id="w-node-e026f1a0-2092-2606-fedb-be05c5572b3c-b15929cd" href="jobs-details" class="lastest-jobs-box w-inline-block">
-                                <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt="" class="lastest-job-company-logo"/>
-                                <div class="job-item-content">
-                                    <div class="display-3 text-neutral-100">Social Media Assistant</div>
-                                    <div class="job-item-details">
-                                        <div>Nomad</div>
-                                        <div class="svg-icon w-embed">
-                                            <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <circle opacity="0.3" cx="2" cy="2" r="2" fill="currentColor"/>
-                                            </svg>
-                                        </div>
-                                        <div>Paris, France</div>
-                                    </div>
-                                    <div class="job-item-label-wrapper">
-                                        <div class="lastest-jobs-label-work">
-                                            <div class="text-s weight-600">Full Time</div>
-                                        </div>
-                                        <div class="vertical-divider"></div>
-                                        <div class="label-category lastest-jobs-label-category-marketing">
-                                            <div class="text-s weight-600">Marketing</div>
-                                        </div>
-                                        <div class="label-category label-category-design">
-                                            <div class="text-s weight-600">Design</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
                             <?php foreach($params['jobs'] as $job) : ?>
                                 <a id="w-node-e026f1a0-2092-2606-fedb-be05c5572b3c-b15929cd" href="jobs-details/<?=$job->id?>" class="lastest-jobs-box w-inline-block">
                                     <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt="" class="lastest-job-company-logo"/>
@@ -165,13 +119,6 @@
                                             <div class="lastest-jobs-label-work">
                                                 <div class="text-s weight-600"><?=$job->type?></div>
                                             </div>
-                                            <div class="vertical-divider"></div>
-                                            <?php $categories = !empty($job->category)  ? explode(',',$job->category) : []?>
-                                            <?php foreach($categories as $category) : ?>
-                                                <div class="label-category lastest-jobs-label-category-design">
-                                                    <div class="text-s weight-600"><?=$category?></div>
-                                                </div>
-                                            <?php endforeach ?>
                                         </div>
                                     </div>
                                 </a>

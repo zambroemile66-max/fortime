@@ -11,16 +11,16 @@
                     <div class="module">
                         <div class="module-main large">
                             <div class="w-form">
-                                <form id="email-form" name="email-form" data-name="Email Form" class="form">
+                                <form id="email-form" action="job-publish" method="post" class="form">
                                     <div class="_2-fields-split">
                                         <div class="field-block">
                                             <label for="name">Title*</label>
-                                            <input type="text" class="text-input w-input" maxlength="256" name="name" data-name="Name" placeholder="Your first name" required=""/>
+                                            <input type="text" class="text-input w-input" maxlength="256" name="title" data-name="Name" placeholder="Job Title" required=""/>
                                         </div>
                                         <div class="field-spacer"></div>
                                         <div class="field-block">
                                             <label for="pays">Location*</label>
-                                            <select class="text-input w-input" id="pays" name="pays">
+                                            <select class="text-input w-input" id="pays" name="location">
                                                 <option value="cm">Cameroun</option>
                                                 <option value="ci">Côte d’Ivoire</option>
                                                 <option value="sn">Sénégal</option>
@@ -32,19 +32,32 @@
                                     <div class="_2-fields-split">
                                         <div class="field-block">
                                             <label for="name">Type*</label>
-                                            <input type="email" class="text-input w-input" maxlength="256" name="profile-email" data-name="profile-email" placeholder="example@email.com" required=""/>
+                                            <input type="text" class="text-input w-input" maxlength="256" name="type" placeholder="CDD" required=""/>
                                         </div>
                                         <div class="field-spacer"></div>
                                         <div class="field-block">
                                             <label for="number">Salary</label>
-                                            <input type="tel" class="text-input w-input" maxlength="256" name="number" data-name="number" placeholder="027 123 1234" id="number" required=""/>
+                                            <input type="number" class="text-input w-input" min="500" maxlength="256" name="salary" data-name="number" placeholder="500" id="number" required=""/>
                                         </div>
                                     </div>
                                     <div class="_2-fields-split">
                                         <div class="field-block">
                                             <label for="Company-Name">Apply Before*</label>
-                                            <input type="date" class="text-input w-input" maxlength="256" name="Company-Name" data-name="Company Name" placeholder="Example Co." id="Company-Name" required=""/>
+                                            <input type="date" class="text-input w-input" maxlength="256" name="apply_before" data-name="Company Name" placeholder="Example Co." id="Company-Name" required=""/>
                                         </div>
+                                        <div class="field-spacer"></div>
+                                        <div class="field-block">
+                                            <label for="Username">Skills Required</label>
+                                            <input type="text" id="categorie" class="text-input w-input" maxlength="256"  placeholder="Project Management"/>
+                                        </div>
+                                        <div class="field-block">
+                                            <label for="Username">Skills Required</label>
+                                            <input type="button" id="addBtn" class="button w-button text-input w-input" value="Add"/>
+                                        </div>
+                                    </div>
+                                    <div class="field-block">
+                                        <div id="tagsContainer" class="text-area full-width w-input"></div>
+                                        <textarea id="tagsInput" name="skills" hidden></textarea>
                                     </div>
                                     <div class="field-block">
                                         <label for="Username">Description</label>
@@ -69,3 +82,56 @@
                 </div>
             </div>
         </div>
+<script>
+  const input = document.getElementById("categorie");
+  const addBtn = document.getElementById("addBtn");
+  const tagsContainer = document.getElementById("tagsContainer");
+  const tagsInput = document.getElementById("tagsInput");
+
+  let tags = [];
+
+  // Ajouter une catégorie
+  function addTag(tag) {
+    if (tag && !tags.includes(tag)) {
+      tags.push(tag);
+      renderTags();
+    }
+  }
+
+  // Supprimer une catégorie
+  function removeTag(tag) {
+    tags = tags.filter(t => t !== tag);
+    renderTags();
+  }
+
+  // Afficher les tags
+  function renderTags() {
+    tagsContainer.innerHTML = "";
+    tags.forEach(tag => {
+      const span = document.createElement("span");
+      span.className = "badge bg-primary me-1 mb-1";
+      span.innerHTML = `
+        ${tag}
+        <button type="button" class="btn-close btn-close-white btn-sm ms-1" aria-label="Supprimer"></button>
+      `;
+      span.querySelector("button").addEventListener("click", () => removeTag(tag));
+      tagsContainer.appendChild(span);
+    });
+    tagsInput.value = tags.join(","); // stocker dans le champ caché
+  }
+
+  // Clic sur bouton Ajouter
+  addBtn.addEventListener("click", () => {
+    addTag(input.value.trim());
+    input.value = "";
+  });
+
+  // Entrée clavier (Enter)
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addTag(input.value.trim());
+      input.value = "";
+    }
+  });
+</script>

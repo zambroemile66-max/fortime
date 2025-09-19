@@ -34,6 +34,7 @@ $router->get('admin/applicants', 'App\Controllers\Admin\ApplicantController@appl
 $router->get('admin/emails', 'App\Controllers\Admin\EmailController@emailPage');
 $router->get('admin/jobs', 'App\Controllers\Admin\JobController@jobListingPage');
 $router->get('admin/job-publish', 'App\Controllers\Admin\JobController@jobPublishPage');
+$router->post('admin/job-publish', 'App\Controllers\Admin\JobController@jobPublish');
 
 try {
     $router->run();

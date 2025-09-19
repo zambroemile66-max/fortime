@@ -62,13 +62,6 @@
                                                 <div class="label-work">
                                                     <div class="text-s weight-600"><?=$job->type?></div>
                                                 </div>
-                                                <div class="vertical-divider"></div>
-                                                <?php $categories = !empty($job->category)  ? explode(',',$job->category) : []?>
-                                                <?php foreach($categories as $category) : ?>
-                                                    <div class="label-category lastest-jobs-label-category-design">
-                                                        <div class="text-s weight-600"><?=$category?></div>
-                                                    </div>
-                                                <?php endforeach ?>
                                             </div>
                                         </div>
                                     </div>

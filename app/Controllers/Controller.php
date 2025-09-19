@@ -41,4 +41,10 @@ class Controller{
    protected function getDB(){
         return $this->db;
    }
+    public  function isAdmin(){
+        if (!isset($_SESSION['auth']['admin'])) {
+            header('Location: /fortime');
+            exit;
+        }
+    }
 }

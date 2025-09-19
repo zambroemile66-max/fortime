@@ -8,7 +8,7 @@ class Job extends Model{
     protected string $table = "job";
 
     public function getJobs(): array{
-        $sql = "SELECT title,company.name,job.location,type,category,job.id FROM $this->table
+        $sql = "SELECT title,company.name,job.location,type,job.id FROM $this->table
         JOIN company ON job.company_id = company.id LIMIT 6";
         $stmt = $this->db->getPDO()->prepare($sql);
         $stmt->execute();
@@ -21,7 +21,7 @@ class Job extends Model{
         return $stmt->fetchAll();
     }
     public function getAllJobs(): array{
-        $sql = "SELECT title,company.name,job.location,type,category,job.id FROM $this->table
+        $sql = "SELECT title,company.name,job.location,type,job.id FROM $this->table
         JOIN company ON job.company_id = company.id";
         $stmt = $this->db->getPDO()->prepare($sql);
         $stmt->execute();
@@ -36,12 +36,18 @@ class Job extends Model{
     public function countJobsAdmin(): int{
         $sql = "SELECT COUNT(*) AS total_jobs FROM $this->table WHERE company_id = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->execute([$_SESSION['auth']['admin']]);
+        $stmt->execute([(new Company($this->db))->getCompanyId($_SESSION['auth']['admin'])->id]);
         $result = $stmt->fetch();
         return $result ? (int)$result->total_jobs : 0;
     }
+    public function getJobsAdmin(){
+        $sql = "SELECT type,posted_on,title,apply_before FROM $this->table WHERE company_id = ?";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->execute([(new Company($this->db))->getCompanyId($_SESSION['auth']['admin'])->id]);
+        return $stmt->fetchAll();
+    }
     public function getJob(string $id){
-        $sql = "SELECT title,company.name,job.location,DATE_FORMAT(posted_on, '%M %d, %Y') AS posted_on,DATE_FORMAT(apply_before, '%M %d, %Y') AS apply_before, skills, job.description AS job_des, company.description AS comp_des, type,category, company.id AS comp_id, job.id as job_id,salary FROM $this->table
+        $sql = "SELECT title,company.name,job.location,DATE_FORMAT(posted_on, '%M %d, %Y') AS posted_on,DATE_FORMAT(apply_before, '%M %d, %Y') AS apply_before, skills, job.description AS job_des, company.description AS comp_des, type, company.id AS comp_id, job.id as job_id,salary FROM $this->table
         JOIN company ON job.company_id = company.id WHERE job.id = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
         $stmt->execute([$id]);
@@ -65,5 +71,20 @@ class Job extends Model{
         }
 
         throw new NotFoundException("job");
+    }
+    public function publishJob(array $data){
+        $sql = "INSERT INTO $this->table (company_id,title,description,location,type,salary,apply_before,skills) values (:company_id,:title,:description,:location,:type,:salary,:apply_before,:skills) ";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        return $stmt->execute([
+            ":company_id" => $data['company_id'],
+            ":title" => $data['title'],
+            ":description" => $data['field'],
+            ":location" => $data['location'],
+            ":type" => $data['type'],
+            ":salary" => $data['salary'],
+            ":apply_before" => $data['apply_before'],
+            ":skills" => $data['skills']
+        ]);
+
     }
 }
