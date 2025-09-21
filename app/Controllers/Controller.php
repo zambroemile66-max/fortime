@@ -26,6 +26,16 @@ class Controller{
         $content = ob_get_clean();
         require VIEWS.'templates/layout.php';
     }
+    public function viewUserProfile(string $path, ?array $params = null){
+        ob_start();
+        $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
+        require VIEWS.$path.'.php';
+        if ($params) {
+            $params = extract($params);
+        }
+        $content = ob_get_clean();
+        require VIEWS.'templates/user-layout.php';
+    }
 
     public function viewAdmin(string $path, ?array $params = null){
         ob_start();
@@ -42,7 +52,13 @@ class Controller{
         return $this->db;
    }
     public  function isAdmin(){
-        if (!isset($_SESSION['auth']['admin'])) {
+        if (!isset($_SESSION['auth']['admin']['id'])) {
+            header('Location: /fortime');
+            exit;
+        }
+    }
+    public function isAuth(){
+        if (isset($_SESSION['auth'])) {
             header('Location: /fortime');
             exit;
         }

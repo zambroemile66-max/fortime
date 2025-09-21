@@ -44,19 +44,28 @@ header("Access-Control-Allow-Headers: Content-Type");
                             <div class="w-layout-vflex nav-menu-wrap">
                                 <a href="/fortime/find-jobs" class="nav-link w-nav-link">Find Jobs</a>
                                 <a href="/fortime/browse-companies" class="nav-link w-nav-link">Browse Companies</a>
-                                <div class="navbar-buttons-mobile">
-                                    <a href="/fortime/signup" class="button w-button">Sign Up</a>
-                                    <a href="/fortime/login" class="button button-outline w-button">Login</a>
-                                </div>
+                                <?php if(isset($_SESSION['auth']['user']['id'])) :?>
+                                    <a href="/fortime/user-profile/<?=$_SESSION['auth']['user']['id']?>" class="nav-link w-nav-link d-md-none">
+                                        <?=$_SESSION['auth']['user']['name']?>
+                                    </a>
+                                <?php endif ?>
+                                <?php if(!isset($_SESSION['auth'])) :?>
+                                    <div class="navbar-buttons-mobile">
+                                        <a href="/fortime/signup" class="button w-button">Sign Up</a>
+                                        <a href="/fortime/login" class="button button-outline w-button">Login</a>
+                                    </div>
+                                <?php endif ?>
                             </div>
                         </nav>
-                        <div class="navbar-button">
-                            <div class="navbar-button-inner">
-                                <a href="/fortime/login" class="button button-text-only w-button">Login</a>
-                                <div class="vertical-divider"></div>
-                                <a href="/fortime/signup" class="button w-button">Sign Up</a>
+                        <?php if(!isset($_SESSION['auth'])) :?>
+                            <div class="navbar-button">
+                                <div class="navbar-button-inner">
+                                    <a href="/fortime/login" class="button button-text-only w-button">Login</a>
+                                    <div class="vertical-divider"></div>
+                                    <a href="/fortime/signup" class="button w-button">Sign Up</a>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif ?>
                         <div class="menu-button w-nav-button">
                             <div class="svg-icon _20x20 w-embed">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,6 +73,12 @@ header("Access-Control-Allow-Headers: Content-Type");
                                 </svg>
                             </div>
                         </div>
+                        <?php if(isset($_SESSION['auth']['user']['id'])) :?>
+                            <!-- Bootstrap Icons / Classes seulement pour l'avatar -->
+                            <a href="/fortime/user-profile/<?=$_SESSION['auth']['user']['id']?>" class="nav-link d-none d-md-inline">
+                                <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" alt="User" class="rounded-circle" width="45" height="45">
+                            </a>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

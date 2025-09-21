@@ -36,14 +36,14 @@ class Job extends Model{
     public function countJobsAdmin(): int{
         $sql = "SELECT COUNT(*) AS total_jobs FROM $this->table WHERE company_id = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->execute([(new Company($this->db))->getCompanyId($_SESSION['auth']['admin'])->id]);
+        $stmt->execute([(new Company($this->db))->getCompanyId($_SESSION['auth']['admin']['id'])->id]);
         $result = $stmt->fetch();
         return $result ? (int)$result->total_jobs : 0;
     }
-    public function getJobsAdmin(){
+    public function getJobsAdmin(): array{
         $sql = "SELECT type,posted_on,title,apply_before FROM $this->table WHERE company_id = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->execute([(new Company($this->db))->getCompanyId($_SESSION['auth']['admin'])->id]);
+        $stmt->execute([(new Company($this->db))->getCompanyId($_SESSION['auth']['admin']['id'])->id]);
         return $stmt->fetchAll();
     }
     public function getJob(string $id){

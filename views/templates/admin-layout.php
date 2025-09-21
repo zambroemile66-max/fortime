@@ -21,7 +21,7 @@
             <div data-collapse="medium" data-animation="over-left" data-duration="400" role="banner" class="sidebar-nav w-nav">
                 <nav role="navigation" class="dashboard-sidebar w-nav-menu">
                     <div class="sidebar-logo-section">
-                        <a href="/" aria-current="page" class="dashboard-logo w-nav-brand w--current">
+                        <a href="/fortime" aria-current="page" class="dashboard-logo w-nav-brand w--current">
                             <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6480c35745aef364b9b9698d_Brand%20Logo.png'?>" width="98" alt="" class="sidebar-logo"/>
                         </a>
                         <div data-w-id="09e608d3-5d29-ea1c-8250-9e1401f1ec35" class="sidebar-collapse">
@@ -30,27 +30,27 @@
                     </div>
                     <div class="sidebar-menu">
                         <div class="sidebar-menu-section bottom-divider">
-                            <a href="../admin/dashboard" aria-current="page" class="sidebar-link w-inline-block w--current">
+                            <a href="/fortime/admin/dashboard" aria-current="page" class="sidebar-link w-inline-block w--current">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0e958300219cd1f1d_House.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Dashboard</div>
                             </a>
                             <link rel="prefetch" href="/"/>
-                            <a href="../admin/emails" class="sidebar-link w-inline-block">
+                            <a href="/fortime/admin/emails" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Emails</div>
                             </a>
                             <link rel="prefetch" href="/tasks"/>
-                            <a href="../admin/company-profile" class="sidebar-link w-inline-block">
+                            <a href="/fortime/admin/company-profile" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'buildings.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Company profile</div>
                             </a>
                             <link rel="prefetch" href="/emails"/>
-                            <a href="../admin/applicants" class="sidebar-link w-inline-block">
+                            <a href="/fortime/admin/applicants" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'users-three.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">All Applicants</div>
                             </a>
                             <link rel="prefetch" href="/calender"/>
-                            <a href="../admin/jobs" class="sidebar-link w-inline-block">
+                            <a href="/fortime/admin/jobs" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'clipboard-text.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Job listing</div>
                             </a>
@@ -110,7 +110,7 @@
                         <div data-hover="" data-delay="0" class="profile-menu-dropdown w-dropdown">
                             <div data-w-id="b24ef7f8-86e5-1c85-e1c5-b65466441b29" class="profile-menu w-dropdown-toggle">
                                 <div class="profile-image">
-                                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023433071ede4a4bb22c059_profile250.jpg'?>" loading="lazy" alt="" class="cover-image"/>
+                                    <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$_SESSION['company_logo'] ?? SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
                                 </div>
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023423b0a5988466e83ffb8_CaretDown.svg'?>" loading="lazy" width="15" alt="" class="menu-down"/>
                             </div>
@@ -150,3 +150,74 @@
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
     </body>
 </html>
+<script>
+  // Fonction générique pour gérer un tag input
+  function setupTagInput({ input, addBtn, tagsContainer, tagsInput }) {
+    // Si tagsInput contient déjà des données
+    let tags = tagsInput.value ? tagsInput.value.split(",").map(t => t.trim()).filter(t => t !== '') : [];
+
+    // Afficher les tags
+    function renderTags() {
+      tagsContainer.innerHTML = "";
+      tags.forEach(tag => {
+        const span = document.createElement("span");
+        span.className = "badge bg-primary me-1 mb-1";
+        span.innerHTML = `
+          ${tag}
+          <button type="button" class="btn-close btn-close-white btn-sm ms-1" aria-label="Supprimer"></button>
+        `;
+        span.querySelector("button").addEventListener("click", () => removeTag(tag));
+        tagsContainer.appendChild(span);
+      });
+      tagsInput.value = tags.join(","); // stocker dans le champ caché
+    }
+
+    // Ajouter un tag
+    function addTag(tag) {
+      if (tag && !tags.includes(tag)) {
+        tags.push(tag);
+        renderTags();
+      }
+    }
+
+    // Supprimer un tag
+    function removeTag(tag) {
+      tags = tags.filter(t => t !== tag);
+      renderTags();
+    }
+
+    // Initial render
+    renderTags();
+
+    // Événements
+    addBtn.addEventListener("click", () => {
+      addTag(input.value.trim());
+      input.value = "";
+    });
+
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addTag(input.value.trim());
+        input.value = "";
+      }
+    });
+  }
+
+  // ⚡ Initialisation pour 4 champs différents
+  setupTagInput({
+    input: document.getElementById("categorie"),
+    addBtn: document.getElementById("addBtn"),
+    tagsContainer: document.getElementById("tagsContainer"),
+    tagsInput: document.getElementById("tagsInput")
+  });
+
+  setupTagInput({
+    input: document.getElementById("categorie2"),
+    addBtn: document.getElementById("addBtn2"),
+    tagsContainer: document.getElementById("tagsContainer2"),
+    tagsInput: document.getElementById("tagsInput2")
+  });
+</script>
+
+

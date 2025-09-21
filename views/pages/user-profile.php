@@ -1,25 +1,23 @@
 <div class="main-content">
     <div class="container w-container">
-        <h1 class="page-title">Company Profile</h1>
+        <h1 class="page-title">Your Profile</h1>
     </div>
     <div class="_1-2-5-grid">
         <div class="module center-align sticky">
             <div class="profile-image large">
-                <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$params['company']->logo_url ?? SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
+                <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
             </div>
-            <h3 class="no-margin"><?=$params['company']->name?></h3>
-            <h5><?=$params['company']->industry?></h5>
+            <h3 class="no-margin"><?=$params['user']->name?></h3>
             <div class="profile-buttons-div"></div>
         </div>
         <div class="module-group">
             <div id="Account-Infomraiton" class="module">
                 <div class="module-header minimal">
-                    <h3 class="module-heading">Company Information</h3>
+                    <h3 class="module-heading">Account Information</h3>
                 </div>
                 <div class="module-main">
                     <div class="settings-label">Profile Picture</div>
-                    <div class="w-form">
-                    <form id="email-form" name="email-form" data-name="Email Form" class="form" action="company-profile/profile-picture" method="post" enctype="multipart/form-data">
+                    <form id="email-form" name="email-form" data-name="Email Form" class="form" action="admin/profile" method="post" enctype="multipart/form-data">
                         <div class="field-block">
                             <label for="file" class="custum-file-upload">
                                 <div class="icon">
@@ -35,7 +33,9 @@
                         <br>
                         <input type="submit" value="Update Picture" class="button settings w-button"/>
                     </form>
-                </div>
+                    <p class="paragraph-small no-margin">
+                        You can upload images up to 400x400px.<br/>
+                    </p>
                     <style>
                         .custum-file-upload {
                             height: 140px;
@@ -91,31 +91,16 @@
                             }
                         });
                     </script>
-                    <p class="paragraph-small no-margin">
-                        You can upload images up to 400x400px.<br/>
-                    </p>
                     <div class="divider"></div>
                     <div class="w-form">
-                        <form id="email-form"  action="company-profile/profile-info" method="post" data-name="Email Form" class="form">
+                        <form id="email-form" name="email-form" data-name="Email Form" class="form">
                             <div class="field-block">
-                                <label for="name">Company Name</label>
-                                <input type="text" class="text-input filled w-input" maxlength="256" name="comp_name" data-name="Name" value="<?=$params['company']->name?>" required=""/>
+                                <label for="name">Name</label>
+                                <input type="text" class="text-input filled w-input" maxlength="256" name="name" data-name="Name" value="<?=$params['user']->name?>" required=""/>
                             </div>
                             <div class="field-block">
-                                <label for="website">Company Website</label>
-                                <input type="url" class="text-input filled w-input" maxlength="256" name="comp_web" data-name="Name" value="<?=$params['company']->website?>"/>
-                            </div>
-                            <div class="field-block">
-                                <label for="Username">Founded</label>
-                                <input type="date" class="text-input filled w-input" maxlength="256" name="founded" data-name="Username" value="<?=$params['company']->founded_date?>" required=""/>
-                            </div>
-                            <div class="field-block">
-                                <label for="Role">Industry</label>
-                                <input type="text" class="text-input filled w-input" maxlength="256" name="industry" data-name="Role" value="<?=$params['company']->industry?>" id="Role"/>
-                            </div>
-                            <div class="field-block">
-                                <label for="Username">Description</label>
-                                <textarea  placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat." maxlength="5000" data-name="Field" name="desc" class="text-area filled w-input"><?=$params['company']->description?></textarea>
+                                <label for="profile-email">Email</label>
+                                <input type="email" class="text-input filled w-input" readonly maxlength="256" data-name="profile-email" value="<?=$params['user']->email?>" />
                             </div>
                             <input type="submit" value="Update Profile" data-wait="Please wait..." class="button settings w-button"/>
                         </form>
@@ -130,28 +115,18 @@
             </div>
             <div id="Password" class="module">
                 <div class="module-header minimal">
-                    <h3 class="module-heading">Company Information</h3>
+                    <h3 class="module-heading">Password</h3>
                 </div>
                 <div class="module-main">
                     <div class="w-form">
-                        <form id="email-form" name="email-form" action="company-profile/profile-more-info" method="post" data-name="Email Form" class="form">
+                        <form id="email-form" name="email-form" data-name="Email Form" class="form">
                             <div class="field-block">
-                                <label for="Username">Tech stack</label>
-                                <input type="text" id="categorie" class="text-input w-input" maxlength="256"  placeholder="Project Management"/>
-                                <input type="button" id="addBtn" class="button w-button text-input w-input" value="Add"/>
+                                <label for="name-2">Old Password</label>
+                                <input type="password" maxlength="256" name="name-2" data-name="Name 2" class="text-input w-input"/>
                             </div>
                             <div class="field-block">
-                                <div id="tagsContainer" class="text-area filled w-input"></div>
-                                <textarea id="tagsInput" name="tech_stack" hidden><?=$params['company']->tech_stack?></textarea>
-                            </div>
-                            <div class="field-block">
-                                <label for="Username">Office Location</label>
-                                <input type="text" id="categorie2" class="text-input w-input" maxlength="256"  placeholder="Project Management"/>
-                                <input type="button" id="addBtn2" class="button w-button text-input w-input" value="Add"/>
-                            </div>
-                            <div class="field-block">
-                                <div id="tagsContainer2" class="text-area filled w-input"></div>
-                                <textarea id="tagsInput2" name="location" hidden><?=$params['company']->location?></textarea>
+                                <label for="profile-email-2">New Password</label>
+                                <input type="password" maxlength="256" name="profile-email-2" data-name="Profile Email 2" class="text-input w-input"/>
                             </div>
                             <input type="submit" value="Change" data-wait="Please wait..." class="button settings w-button"/>
                         </form>
@@ -160,6 +135,32 @@
                         </div>
                         <div class="form-error w-form-fail">
                             <div>Oops! Something went wrong. Please fill in the required fields and try again.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Close-Account" class="module red">
+                <div class="module-header minimal">
+                    <h3 class="module-heading red">Close Account</h3>
+                </div>
+                <div class="module-main">
+                    <p>
+                        Are you sure you want your account to be deleted? <br/>This action can &#x27;t be undone.
+                    </p>
+                    <div class="w-form">
+                        <form data-name="Email Form" name="email-form" class="form">
+                            <label class="w-checkbox checkbox-element">
+                                <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+                                <input type="checkbox" data-name="Checkbox 4" name="checkbox-4" style="opacity:0;position:absolute;z-index:-1"/>
+                                <span for="checkbox-6" class="w-form-label">I &#x27;m absolutely sure I want my account to be deleted</span>
+                            </label>
+                            <input type="submit" value="Delete My Account" data-wait="Please wait..." class="button delete w-button"/>
+                        </form>
+                        <div class="form-success w-form-done">
+                            <div>We &#x27;re sorry to see you go.</div>
+                        </div>
+                        <div class="form-error w-form-fail">
+                            <div>Oops! Something went wrong. Try again later.</div>
                         </div>
                     </div>
                 </div>

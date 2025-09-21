@@ -25,7 +25,7 @@ class JobController extends Controller
         $field =  htmlspecialchars(trim($_POST['field']));
 
         $data = [
-            "company_id" => (new Company($this->getDB()))->getCompanyId($_SESSION['auth']['admin'])->id,
+            "company_id" => (new Company($this->getDB()))->getCompanyId($_SESSION['auth']['admin']['id'])->id,
             "title" => $title,
             "location" => $location,
             "type" => $type,

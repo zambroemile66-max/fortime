@@ -5,7 +5,7 @@
                 <div class="_1-2-5-grid">
                     <div class="module center-align sticky">
                         <div class="profile-image large">
-                            <img src="https://assets.website-files.com/6022ffeab6f354c9aa1eb2a2/6023433071ede4a4bb22c059_profile250.jpg" loading="lazy" alt="" class="cover-image"/>
+                            <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$_SESSION['company_logo'] ?? SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
                         </div>
                         <h3 class="no-margin">Nikolai Bain</h3>
                         <h5>Designer</h5>

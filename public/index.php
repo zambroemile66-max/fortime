@@ -15,6 +15,7 @@ $router->get('', 'App\Controllers\BlogController@homePage');
 
 $router->get('jobs-details/:id', 'App\Controllers\JobController@jobsDetailsPage');
 $router->get('job-application/:id', 'App\Controllers\JobController@jobApplicationPage');
+$router->post('job-application', 'App\Controllers\JobController@jobApplication');
 $router->get('find-jobs', 'App\Controllers\JobController@findJobsPage');
 $router->get('search', 'App\Controllers\JobController@searchPage');
 
@@ -23,6 +24,7 @@ $router->get('browse-companies', 'App\Controllers\CompanyController@browseCompan
 $router->get('company-details/:id', 'App\Controllers\CompanyController@companyDetailsPage');
 
 $router->get('login', 'App\Controllers\UserController@loginPage');
+$router->get('logout', 'App\Controllers\UserController@logout');
 $router->post('login', 'App\Controllers\UserController@login');
 $router->get('signup', 'App\Controllers\UserController@signupPage');
 $router->post('signup', 'App\Controllers\UserController@signup');
@@ -30,11 +32,17 @@ $router->post('signup', 'App\Controllers\UserController@signup');
 $router->get('admin/dashboard', 'App\Controllers\Admin\DashboardController@dashboardPage');
 $router->get('admin/profile', 'App\Controllers\Admin\ProfileController@profilePage');
 $router->get('admin/company-profile', 'App\Controllers\Admin\CompanyProfileController@companyProfilePage');
+$router->post('admin/company-profile/profile-picture', 'App\Controllers\Admin\CompanyProfileController@updateCompanyProfilePicture');
+$router->post('admin/company-profile/profile-info', 'App\Controllers\Admin\CompanyProfileController@updateCompanyInfo');
+$router->post('admin/company-profile/profile-more-info', 'App\Controllers\Admin\CompanyProfileController@updateCompanyMoreInfo');
 $router->get('admin/applicants', 'App\Controllers\Admin\ApplicantController@applicantPage');
-$router->get('admin/emails', 'App\Controllers\Admin\EmailController@emailPage');
+$router->get('admin/emails', 'App\Controllers\Admin\ApplicationController@emailPage');
+$router->get('admin/email-view/:id', 'App\Controllers\Admin\ApplicationController@emailViewPage');
 $router->get('admin/jobs', 'App\Controllers\Admin\JobController@jobListingPage');
 $router->get('admin/job-publish', 'App\Controllers\Admin\JobController@jobPublishPage');
 $router->post('admin/job-publish', 'App\Controllers\Admin\JobController@jobPublish');
+
+$router->get('user-profile/:id','App\Controllers\UserProfileController@userProfilePage');
 
 try {
     $router->run();

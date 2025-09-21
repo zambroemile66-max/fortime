@@ -24,9 +24,15 @@ class User extends Model{
     }
 
     public function checkIfUserExists(string $email){
-        $sql = "SELECT id,password_hash,type FROM $this->table WHERE email = ?";
+        $sql = "SELECT id,password_hash,type,name,photo,email FROM $this->table WHERE email = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function getUserById(string $id){
+        $sql = "SELECT * FROM $this->table WHERE id = ?";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 }

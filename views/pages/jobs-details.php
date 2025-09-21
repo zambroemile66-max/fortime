@@ -1,3 +1,9 @@
+<?php 
+    $skills = explode(',',$params['jobs_details']->skills);
+    $skills = !empty($params['jobs_details']->skills) ? array_filter(array_map('trim', $skills), function($t) {
+    return $t !== '';
+    }) : [] 
+?>
 <section class="section hero-section">
     <div class="container w-container">
         <div class="job-details-hero">
@@ -14,7 +20,7 @@
                 <div class="job-details-banner-company">
                     <div class="w-layout-hflex job-details-banner-company-brand">
                         <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6482974d442531bf1466d66d_Webflow%20Logo.svg'?>" loading="lazy" alt="" class="job-details-banner-company-logo"/>
-                        <a href="#" class="job-details-banner-company-share w-inline-block">
+                        <a href="#" class="job-details-banner-company-share w-inline-block" onclick="copyURL(event)">
                             <div class="svg-icon w-embed">
                                 <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.66797 20.7648C10.8771 20.7648 12.668 18.9081 12.668 16.6178C12.668 14.3274 10.8771 12.4707 8.66797 12.4707C6.45883 12.4707 4.66797 14.3274 4.66797 16.6178C4.66797 18.9081 6.45883 20.7648 8.66797 20.7648Z" stroke="#7C8493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -46,7 +52,7 @@
                     </div>
                 </div>
                 <div class="job-details-banner-link">
-                    <a href="#" class="link-with-icon w-inline-block">
+                    <a href="#" class="link-with-icon w-inline-block" onclick="copyURL(event)">
                         <div class="svg-icon w-embed">
                             <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.66797 20.7648C10.8771 20.7648 12.668 18.9081 12.668 16.6178C12.668 14.3274 10.8771 12.4707 8.66797 12.4707C6.45883 12.4707 4.66797 14.3274 4.66797 16.6178C4.66797 18.9081 6.45883 20.7648 8.66797 20.7648Z" stroke="#7C8493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -96,7 +102,6 @@
                 <div class="job-details-summary-skills">
                     <h3 class="text-neutral-100">Required Skills</h3>
                     <div class="job-details-summary-skills-list">
-                        <?php $skills = !empty($params['jobs_details']->skills) ? explode(',',$params['jobs_details']->skills) : [] ?>
                         <?php foreach($skills as $skill) : ?>
                             <div class="job-details-summary-skills-needed text-r">
                                 <div><?=$skill?></div>
@@ -127,7 +132,7 @@
                         </div>
                     </div>
                 </a>
-                <div class="text-r color-neutral-80"><?=$params['jobs_details']->comp_des?></div>
+                <div class="text-r color-neutral-80"><?=substr_replace($params['jobs_details']->comp_des,'...',200)?></div>
             </div>
             <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6487556b38b327ed912120cb_Job%20Details%20Company%20Profile.png'?>" loading="lazy" alt="Jobhuntly Company Activities" class="job-details-company-profile"/>
         </div>
@@ -180,3 +185,15 @@
         </div>
     </div>
 </section>
+<script>
+    function copyURL(event) {
+    event.preventDefault(); // évite de suivre le lien
+    const url = window.location.href; // l’URL actuelle de la page
+
+    navigator.clipboard.writeText(url).then(() => {
+        alert("Lien copié ");
+    }).catch(err => {
+        console.error("Erreur lors de la copie : ", err);
+    });
+    }
+</script>

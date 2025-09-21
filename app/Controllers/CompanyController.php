@@ -15,7 +15,7 @@ class CompanyController extends Controller{
     public function createCompany($userId) {
         return (new Company($this->getDB()))->insertCompany($userId);
     }
-    public function retrieveCompany(){
+    public function retrieveCompany(): array{
         return (new Company($this->getDB()))->getCompanies();
     }
 }

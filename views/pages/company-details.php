@@ -1,6 +1,13 @@
 <?php 
-    $locations = isset($params['company_details']->location) ? explode(',',$params['company_details']->location) : [];
+    $locations = explode(',',$params['company_details']->location);
+    $locations = isset($params['company_details']->location) ? array_filter(array_map('trim', $locations), function($t) {
+    return $t !== '';
+    }) : [];
     $count_locations = count($locations);
+    $tech_stack = explode(',',$params['company_details']->tech_stack);
+    $tech_stack = isset($params['company_details']->tech_stack) ? array_filter(array_map('trim', $tech_stack), function($t) {
+    return $t !== '';
+    }) : [] 
 ?>
 <section class="section hero-section">
             <div class="container w-container">
@@ -27,7 +34,7 @@
                                         <div>43 Jobs</div>
                                     </div>
                                 </div>
-                                <a href="#" class="text-r weight-600 text-brands-primary"><?=$params['company_details']->website?></a>
+                                <a href="<?=$params['company_details']->website?>" target="_blank" class="text-r weight-600 text-brands-primary"><?=$params['company_details']->website?></a>
                             </div>
                             <div class="company-hero-summary">
                                 <div class="company-hero-summary-item">
@@ -171,11 +178,10 @@
                         <div class="company-details-right-tech">
                             <div class="company-details-right-header">
                                 <h3 class="text-neutral-100">Tech stack</h3>
-                                <div class="text-r text-neutral-80">Learn about the technology and tools that Stripe uses.</div>
+                                <div class="text-r text-neutral-80">Learn about the technology and tools that <?=$params['company_details']->name?> uses.</div>
                             </div>
                             <div class="company-details-right-tech-inner">
                                 <div class="company-details-right-tech-grid">
-                                    <?php $tech_stack = isset($params['company_details']->tech_stack) ? explode(',',$params['company_details']->tech_stack) : [] ?>
                                     <?php foreach($tech_stack as $tech): ?>
                                         <div id="w-node-f4cbfe95-d372-e6a3-9ba8-dce5bd520b85-cec1493a" class="company-details-right-tech-box">
                                             <div>
@@ -190,7 +196,7 @@
                         <div class="company-details-right-location">
                             <div class="company-details-right-header">
                                 <h3 class="text-neutral-100">Office Location</h3>
-                                <div class="text-r text-neutral-80">Stripe offices spread across 20 countries</div>
+                                <div class="text-r text-neutral-80"><?=$params['company_details']->name?> offices spread across <?=$count_locations > 1 ? $count_locations.' countries' : $count_locations.' countrie'?></div>
                             </div>
                             <div class="company-details-right-location-list">
                                 <?php foreach($locations as $location): ?>

@@ -32,13 +32,6 @@ function splitByDate(array $data, string $dateKey = "apply_before"): array {
     ];
 }
 
-// Exemple d’utilisation :
-$tasks = [
-    ["id" => 1, "name" => "Projet A", "date" => "2025-09-10"],
-    ["id" => 2, "name" => "Projet B", "date" => "2025-09-25"],
-    ["id" => 3, "name" => "Projet C", "date" => "2025-09-19"],
-];
-
 $open_jobs = splitByDate($params['jobs_listing'])['early'];
 $closed_jobs = splitByDate($params['jobs_listing'])['late'];
 ?>

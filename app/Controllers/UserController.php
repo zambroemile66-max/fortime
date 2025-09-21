@@ -8,6 +8,7 @@ use App\Models\User;
 class UserController extends Controller{
     
     public function loginPage() {
+        $this->isAuth();
         return $this->view('pages.login');
     }
     public function login(){
@@ -19,7 +20,33 @@ class UserController extends Controller{
                 if ($userChecked && password_verify($_POST['password'], $userChecked['password_hash'])) {
                     // Protection fixation de session
                     session_regenerate_id(true);
-                    $_SESSION['auth'] =  $userChecked['type'] === 'company' ? ['admin' => $userChecked['id']] : ['user' => $userChecked['id']];
+                    $_SESSION['auth'] = [
+                        'user' => [
+                            'id'    => null,
+                            'email' => null,
+                            'name'  => null,
+                            'photo' => null
+                        ],
+                        'admin' => [
+                            'id'    => null,
+                            'email' => null,
+                            'name'  => null,
+                            'photo' => null
+                        ],
+                    ] ;
+                    // $userChecked['type'] === 'company' ? $_SESSION['auth']['admin']['id'] = $userChecked['id']  : $_SESSION['auth']['user']['id'] = $userChecked['id'];
+
+                    if($userChecked['type'] === 'company'){
+                        $_SESSION['auth']['admin']['id'] = $userChecked['id'];
+                        $_SESSION['auth']['admin']['name'] = $userChecked['name'];
+                        $_SESSION['auth']['admin']['photo'] = $userChecked['photo'];
+                    }else{
+                        $_SESSION['auth']['user']['id'] = $userChecked['id'];
+                        $_SESSION['auth']['user']['name'] = $userChecked['name'];
+                        $_SESSION['auth']['user']['photo'] = $userChecked['photo'];
+                        $_SESSION['auth']['user']['email'] = $userChecked['email'];
+                    }
+                    // Exemple après une connexion réussie
                     $this->userRedirect($userChecked['type']);
                 } else {
                     throw new Exception('Mot de passe ou email incorrect');
@@ -45,6 +72,7 @@ class UserController extends Controller{
         }
     }
     public function signupPage() {
+        $this->isAuth();
         return $this->view('pages.signup');
     }
     public function signup() {
@@ -70,16 +98,16 @@ class UserController extends Controller{
                 exit;
 
             } catch (Exception $e) {
-                // if ($e->getCode() == 23000) {
-                //     $_SESSION['error'] = "❌ Cet utilisateur existe déjà !";
-                // } else {
-                    
-                // }
-                $_SESSION['error'] = "❌ Erreur : " . $e->getMessage();
+                $_SESSION['error'] = "❌ Cet utilisateur existe déjà !";
                 header('Location: signup');
                 exit;
             }
         }
     }
-
+    public function logout() {
+        unset($_SESSION['auth']);
+        $_SESSION['success'] = '✅ Vous avez été déconnecté avec succès'; 
+        header("Location: /fortime/login");
+        exit;
+    }
 }
