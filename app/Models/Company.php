@@ -35,7 +35,7 @@ class Company extends Model{
         return $stmt->fetchAll();
     }
     public function getCompany(string $id): object{
-        $sql = "SELECT name, logo_url, website,DATE_FORMAT(founded_date, '%M %d, %Y') AS founded_date, industry, 
+        $sql = "SELECT id,name, logo_url, website,DATE_FORMAT(founded_date, '%M %d, %Y') AS founded_date, industry, 
         description, tech_stack,location FROM $this->table WHERE id = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
         $stmt->execute([$id]);
@@ -46,6 +46,9 @@ class Company extends Model{
         }
 
         throw new NotFoundException("company");
+    }
+    public function getCompanyTeamMember(string $id){
+        return (new Team($this->db))->getAllTeamMember($id);
     }
     public function getCompanyId(string $id){
         $sql = "SELECT * FROM $this->table WHERE user_id = ?";
@@ -59,13 +62,13 @@ class Company extends Model{
     }
     public function updateProfilePicture(string $companyId, string $fileName)
     {
-        $stmt = $this->db->getPDO()->prepare("UPDATE company SET logo_url = ? WHERE id = ?");
+        $stmt = $this->db->getPDO()->prepare("UPDATE $this->table SET logo_url = ? WHERE id = ?");
         if (!$stmt->execute([$fileName, $companyId])) {
             throw new \Exception("Erreur lors de la mise à jour de la base de données.");
         }
     }
     public function updateCompanyInfo(array $data,string $companyId){
-        $stmt = $this->db->getPDO()->prepare("UPDATE company SET name=?, website=?, founded_date=?, industry=?, description=? WHERE id=?");
+        $stmt = $this->db->getPDO()->prepare("UPDATE $this->table SET name=?, website=?, founded_date=?, industry=?, description=? WHERE id=?");
         if (!$stmt->execute([
             $data['comp_name'],
             $data['comp_web'],
@@ -78,7 +81,7 @@ class Company extends Model{
         }
     }
     public function updateCompanyMoreInfo(array $data,string $companyId){
-        $stmt = $this->db->getPDO()->prepare("UPDATE company SET location=?, tech_stack=? WHERE id=?");
+        $stmt = $this->db->getPDO()->prepare("UPDATE $this->table SET location=?, tech_stack=? WHERE id=?");
         if (!$stmt->execute([
             $data['location'],
             $data['tech_stack'],

@@ -35,4 +35,10 @@ class User extends Model{
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
+    public function updateProfilePicture(string $userId, string $fileName){
+        $stmt = $this->db->getPDO()->prepare("UPDATE $this->table SET photo = ? WHERE id = ?");
+        if (!$stmt->execute([$fileName, $userId])) {
+            throw new \Exception("Erreur lors de la mise à jour de la base de données.");
+        }
+    }
 }

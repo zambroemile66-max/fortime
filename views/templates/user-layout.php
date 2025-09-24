@@ -1,3 +1,6 @@
+<?php
+    if($_SESSION['auth']['user']['photo'] === NULL)$_SESSION['auth']['user']['photo'] = 'default-avatar.jpg';
+?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com -->
 <!-- Last Published: Mon Jun 14 2021 20:30:44 GMT+0000 (Coordinated Universal Time) -->
@@ -24,7 +27,7 @@
                 <div data-hover="" data-delay="0" class="profile-menu-dropdown w-dropdown">
                     <div data-w-id="071f15f1-7dc5-0a4f-9c97-67534b35b4f2" class="profile-menu w-dropdown-toggle">
                         <div class="profile-image">
-                            <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
+                            <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$_SESSION['auth']['user']['photo']?>" loading="lazy" alt="" class="cover-image"/>
                         </div>
                         <img src="https://assets.website-files.com/6022ffeab6f354c9aa1eb2a2/6023423b0a5988466e83ffb8_CaretDown.svg" loading="lazy" width="15" alt="" class="menu-down"/>
                     </div>

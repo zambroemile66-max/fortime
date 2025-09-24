@@ -59,11 +59,11 @@
                                 <a id="w-node-c77a323f-5989-c4b9-a51c-a39ada385073-347409a8" href="company-details/<?=$company->id?>" class="company-box w-inline-block">
                                     <div class="company-card-title">
                                         <div class="company-logo">
-                                            <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'6481677da664682e7e41fd4f_Nomad%20Logo.svg'?>" loading="lazy" alt=""/>
+                                            <img src="<?=$company->logo_url != "" ? SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$company->logo_url : SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>"loading="lazy" alt=""/>
                                         </div>
-                                        <div class="tag">
+                                        <!-- <div class="tag">
                                             <div class="text-r text-brands-primary">3 Jobs</div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="company-card-description">
                                         <h4><?=$company->name?></h4>

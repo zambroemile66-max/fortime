@@ -1,3 +1,6 @@
+<?php
+    if($_SESSION['auth']['user']['photo'] === NULL)$_SESSION['auth']['user']['photo'] = 'default-avatar.jpg';
+?>
 <div class="main-content">
     <div class="container w-container">
         <h1 class="page-title">Your Profile</h1>
@@ -5,7 +8,7 @@
     <div class="_1-2-5-grid">
         <div class="module center-align sticky">
             <div class="profile-image large">
-                <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
+                <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$_SESSION['auth']['user']['photo']?>" loading="lazy" alt="" class="cover-image"/>
             </div>
             <h3 class="no-margin"><?=$params['user']->name?></h3>
             <div class="profile-buttons-div"></div>
@@ -17,7 +20,7 @@
                 </div>
                 <div class="module-main">
                     <div class="settings-label">Profile Picture</div>
-                    <form id="email-form" name="email-form" data-name="Email Form" class="form" action="admin/profile" method="post" enctype="multipart/form-data">
+                    <form id="email-form" name="email-form" data-name="Email Form" class="form" action="/fortime/user-profile" method="post" enctype="multipart/form-data">
                         <div class="field-block">
                             <label for="file" class="custum-file-upload">
                                 <div class="icon">
@@ -27,6 +30,7 @@
                                     <span class="settings-label" >Upload New Picture</span>
                                 </div>
                                 <input name="file" id="file" type="file" accept="image/*" required>
+                                <input style="display: none;" type="text" class="text-input filled w-input" maxlength="256" name="id" data-name="Name" value="<?=$params['user']->id?>" required=""/>
                             </label>
                             <img onclick="window.location.reload()" id="image-preview" src="#" alt="Image Preview" style="display: none; max-width: 30%; height: auto; margin-top: 10px;border-radius: 10px">
                         </div>

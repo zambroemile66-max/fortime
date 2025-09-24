@@ -13,7 +13,9 @@ class JobController extends Controller
     }
     public function jobPublishPage()
     {
-        $this->viewAdmin('admin.job-publish');
+        $companyId = (new CompanyProfileController($this->getDB()))->Company();
+        $location = (new Company($this->getDB()))->getCompany($companyId->id)->location;
+        $this->viewAdmin('admin.job-publish',compact('location'));
     }
     public function jobPublish(){
         $title =  htmlspecialchars(trim($_POST['title']));
@@ -42,6 +44,25 @@ class JobController extends Controller
         } catch (\Throwable $th) {
             $_SESSION['error'] = "❌ Erreur : " . $th->getMessage();
             header('Location: /fortime/admin/job-publish');
+        }
+    }
+    public function jobListingDestroy(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            try {
+                if(!isset($_POST['ids']))throw new \Exception('No jobs selected'); 
+                $ids = array_unique($_POST['ids']);
+                foreach($ids as $id){
+                    (new Job($this->getDB()))->jobDestroy($id);
+                }
+                $_SESSION['success'] = "✅ Job(s) deleted";
+                header('Location: /fortime/admin/jobs');
+                exit();
+            } catch (\Throwable $th) {
+                //throw $th;
+                $_SESSION['error'] = "❌ Failled ".$th->getMessage();
+                header('Location: /fortime/admin/jobs');
+                exit();
+            }
         }
     }
 }

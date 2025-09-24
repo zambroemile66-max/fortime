@@ -28,7 +28,7 @@ class CompanyProfileController extends Controller{
             }
         }
     }
-    public function uploadProfilePicture(mixed $file)
+    public function uploadProfilePicture(mixed $file): string
     {
         if ($file['error'] !== UPLOAD_ERR_OK) {
             throw new \Exception("Erreur lors de l'upload du fichier.");
@@ -70,11 +70,11 @@ class CompanyProfileController extends Controller{
             try {
                 $this->sanitizeCompanyInfo();
                 (new Company($this->getDB()))->updateCompanyInfo($_POST,$company->id);
-                $_SESSION['success'] = "Informations mises à jour.";
+                $_SESSION['success'] = "✅ Informations mises à jour.";
                 header('Location: /fortime/admin/company-profile');
                 exit;
             } catch (\Throwable $th) {
-                $_SESSION['error'] = $th->getMessage();
+                $_SESSION['error'] = "❌ ".$th->getMessage();
                 header('Location: /fortime/admin/company-profile');
                 exit;
             }
@@ -87,11 +87,11 @@ class CompanyProfileController extends Controller{
             try {
                 $this->sanitizeCompanyInfo();
                 (new Company($this->getDB()))->updateCompanyMoreInfo($_POST,$company->id);
-                $_SESSION['success'] = "Informations mises à jour.";
+                $_SESSION['success'] = "✅ Informations mises à jour.";
                 header('Location: /fortime/admin/company-profile');
                 exit;
             } catch (\Throwable $th) {
-                $_SESSION['error'] = $th->getMessage();
+                $_SESSION['error'] = "❌ ".$th->getMessage();
                 header('Location: /fortime/admin/company-profile');
                 exit;
             }

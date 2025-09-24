@@ -6,7 +6,7 @@
         <div class="module">
             <div class="module-main">
                 <div class="email-section">
-                    <?php foreach ($params['applications'] as $application) : ?>
+                    <?php foreach ($params['applications'] ?? [] as $application) : ?>
                         <a href="email-view/<?=$application->id?>" class="email-element w-inline-block">
                             <div class="notification-top">
                                 <div class="notification-dot"></div>

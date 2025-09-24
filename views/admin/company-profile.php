@@ -138,7 +138,7 @@
                             <div class="field-block">
                                 <label for="Username">Tech stack</label>
                                 <input type="text" id="categorie" class="text-input w-input" maxlength="256"  placeholder="Project Management"/>
-                                <input type="button" id="addBtn" class="button w-button text-input w-input" value="Add"/>
+                                <input type="button" id="addBtn" class="button w-button text-input w-input d-none" value="Add"/>
                             </div>
                             <div class="field-block">
                                 <div id="tagsContainer" class="text-area filled w-input"></div>
@@ -147,7 +147,7 @@
                             <div class="field-block">
                                 <label for="Username">Office Location</label>
                                 <input type="text" id="categorie2" class="text-input w-input" maxlength="256"  placeholder="Project Management"/>
-                                <input type="button" id="addBtn2" class="button w-button text-input w-input" value="Add"/>
+                                <input type="button" id="addBtn2" class="button w-button text-input w-input d-none" value="Add"/>
                             </div>
                             <div class="field-block">
                                 <div id="tagsContainer2" class="text-area filled w-input"></div>

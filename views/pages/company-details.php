@@ -7,7 +7,7 @@
     $tech_stack = explode(',',$params['company_details']->tech_stack);
     $tech_stack = isset($params['company_details']->tech_stack) ? array_filter(array_map('trim', $tech_stack), function($t) {
     return $t !== '';
-    }) : [] 
+    }) : [] ;
 ?>
 <section class="section hero-section">
             <div class="container w-container">
@@ -21,18 +21,18 @@
                     </div>
                     <div class="company-hero-box">
                         <div class="w-layout-hflex company-hero-logo-wrap">
-                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/64875951284002bdb74bfc70_Company%20Logo%20Stripe.png" loading="lazy" alt="" class="company-hero-logo"/>
-                            <div class="company-hero-name-tag company-hero-name-tag-mobile">
+                            <img src="<?=$params['company_details']->logo_url != "" ? SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$params['company_details']->logo_url : SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="company-hero-logo"/>
+                            <!-- <div class="company-hero-name-tag company-hero-name-tag-mobile">
                                 <div>43 Jobs</div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="company-hero-inner">
                             <div class="company-hero-title">
                                 <div class="company-hero-name">
                                     <h2 class="text-neutral-100"><?=$params['company_details']->name?></h2>
-                                    <div class="company-hero-name-tag text-r">
+                                    <!-- <div class="company-hero-name-tag text-r">
                                         <div>43 Jobs</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <a href="<?=$params['company_details']->website?>" target="_blank" class="text-r weight-600 text-brands-primary"><?=$params['company_details']->website?></a>
                             </div>
@@ -59,8 +59,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="text-r color-neutral-80">Employees</div>
-                                        <div class="text-r weight-600 text-neutral-100">300+</div>
+                                        <div class="text-r color-neutral-80">Applicants</div>
+                                        <div class="text-r weight-600 text-neutral-100"><?=$params['count_member']?></div>
                                     </div>
                                 </div>
                                 <div class="company-hero-summary-item">
@@ -218,221 +218,35 @@
                         <h3>Team</h3>
                     </div>
                     <div class="company-teams-list">
-                        <div class="company-team-card">
-                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487e849b908c9bf34d17340_Company%20Team%20Avatar%201.png" loading="lazy" alt="Jobhuntly Company Teams" class="company-team-card-avatar"/>
-                            <div class="company-team-card-name">
-                                <div class="text-l weight-600 text-neutral-100">Célestin Gardinier</div>
-                                <div class="text-r text-neutral-60">CEO &amp;Co-Founder</div>
+                        <?php foreach($params['team'] as $team) : ?>
+                            <div class="company-team-card">
+                                <img src="<?=$team->photo != "" ? SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$team->photo : SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>"  loading="lazy" alt="Jobhuntly Company Teams" class="company-team-card-avatar" width="150" height="130" />
+                                <div class="company-team-card-name">
+                                    <div class="text-l weight-600 text-neutral-100"><?=$team->name?></div>
+                                    <div class="text-r text-neutral-60"><?=$team->role?></div>
+                                </div>
+                                <div class="company-team-card-social">
+                                    <a href="#" class="w-inline-block">
+                                        <div class="svg-icon w-embed">
+                                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g opacity="0.5" clip-path="url(#clip0_1717_21417)">
+                                                    <path d="M18.8008 4H6.80078C5.69621 4 4.80078 4.89543 4.80078 6V18C4.80078 19.1046 5.69621 20 6.80078 20H18.8008C19.9054 20 20.8008 19.1046 20.8008 18V6C20.8008 4.89543 19.9054 4 18.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8.80078 11V16" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8.80078 8V8.01" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.8008 16V11" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M16.8008 16V13C16.8008 12.4696 16.5901 11.9609 16.215 11.5858C15.8399 11.2107 15.3312 11 14.8008 11C14.2703 11 13.7616 11.2107 13.3866 11.5858C13.0115 11.9609 12.8008 12.4696 12.8008 13" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_1717_21417">
+                                                        <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="company-team-card-social">
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21412)">
-                                                <path d="M16.8008 4H8.80078C6.59164 4 4.80078 5.79086 4.80078 8V16C4.80078 18.2091 6.59164 20 8.80078 20H16.8008C19.0099 20 20.8008 18.2091 20.8008 16V8C20.8008 5.79086 19.0099 4 16.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 15C14.4576 15 15.8008 13.6569 15.8008 12C15.8008 10.3431 14.4576 9 12.8008 9C11.1439 9 9.80078 10.3431 9.80078 12C9.80078 13.6569 11.1439 15 12.8008 15Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M17.3008 7.5V7.501" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21412">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21417)">
-                                                <path d="M18.8008 4H6.80078C5.69621 4 4.80078 4.89543 4.80078 6V18C4.80078 19.1046 5.69621 20 6.80078 20H18.8008C19.9054 20 20.8008 19.1046 20.8008 18V6C20.8008 4.89543 19.9054 4 18.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 11V16" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 8V8.01" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 16V11" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M16.8008 16V13C16.8008 12.4696 16.5901 11.9609 16.215 11.5858C15.8399 11.2107 15.3312 11 14.8008 11C14.2703 11 13.7616 11.2107 13.3866 11.5858C13.0115 11.9609 12.8008 12.4696 12.8008 13" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21417">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="company-team-card">
-                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487e84978b5478ce2f59120_Company%20Team%20Avatar%202.png" loading="lazy" alt="Jobhuntly Company Teams" class="company-team-card-avatar"/>
-                            <div class="company-team-card-name">
-                                <div class="text-l weight-600 text-neutral-100">Reynaud Colbert</div>
-                                <div class="text-r text-neutral-60">Co-Founder</div>
-                            </div>
-                            <div class="company-team-card-social">
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21412)">
-                                                <path d="M16.8008 4H8.80078C6.59164 4 4.80078 5.79086 4.80078 8V16C4.80078 18.2091 6.59164 20 8.80078 20H16.8008C19.0099 20 20.8008 18.2091 20.8008 16V8C20.8008 5.79086 19.0099 4 16.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 15C14.4576 15 15.8008 13.6569 15.8008 12C15.8008 10.3431 14.4576 9 12.8008 9C11.1439 9 9.80078 10.3431 9.80078 12C9.80078 13.6569 11.1439 15 12.8008 15Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M17.3008 7.5V7.501" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21412">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21417)">
-                                                <path d="M18.8008 4H6.80078C5.69621 4 4.80078 4.89543 4.80078 6V18C4.80078 19.1046 5.69621 20 6.80078 20H18.8008C19.9054 20 20.8008 19.1046 20.8008 18V6C20.8008 4.89543 19.9054 4 18.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 11V16" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 8V8.01" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 16V11" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M16.8008 16V13C16.8008 12.4696 16.5901 11.9609 16.215 11.5858C15.8399 11.2107 15.3312 11 14.8008 11C14.2703 11 13.7616 11.2107 13.3866 11.5858C13.0115 11.9609 12.8008 12.4696 12.8008 13" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21417">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="company-team-card">
-                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487e84c78fc8182d6181892_Company%20Team%20Avatar%203.png" loading="lazy" alt="Jobhuntly Company Teams" class="company-team-card-avatar"/>
-                            <div class="company-team-card-name">
-                                <div class="text-l weight-600 text-neutral-100">Célestin Gardinier</div>
-                                <div class="text-r text-neutral-60">CEO &amp;Co-Founder</div>
-                            </div>
-                            <div class="company-team-card-social">
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21412)">
-                                                <path d="M16.8008 4H8.80078C6.59164 4 4.80078 5.79086 4.80078 8V16C4.80078 18.2091 6.59164 20 8.80078 20H16.8008C19.0099 20 20.8008 18.2091 20.8008 16V8C20.8008 5.79086 19.0099 4 16.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 15C14.4576 15 15.8008 13.6569 15.8008 12C15.8008 10.3431 14.4576 9 12.8008 9C11.1439 9 9.80078 10.3431 9.80078 12C9.80078 13.6569 11.1439 15 12.8008 15Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M17.3008 7.5V7.501" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21412">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21417)">
-                                                <path d="M18.8008 4H6.80078C5.69621 4 4.80078 4.89543 4.80078 6V18C4.80078 19.1046 5.69621 20 6.80078 20H18.8008C19.9054 20 20.8008 19.1046 20.8008 18V6C20.8008 4.89543 19.9054 4 18.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 11V16" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 8V8.01" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 16V11" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M16.8008 16V13C16.8008 12.4696 16.5901 11.9609 16.215 11.5858C15.8399 11.2107 15.3312 11 14.8008 11C14.2703 11 13.7616 11.2107 13.3866 11.5858C13.0115 11.9609 12.8008 12.4696 12.8008 13" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21417">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="company-team-card">
-                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487e849c3473ff5e550b9b5_Company%20Team%20Avatar%204.png" loading="lazy" alt="Jobhuntly Company Teams" class="company-team-card-avatar"/>
-                            <div class="company-team-card-name">
-                                <div class="text-l weight-600 text-neutral-100">Célestin Gardinier</div>
-                                <div class="text-r text-neutral-60">CEO &amp;Co-Founder</div>
-                            </div>
-                            <div class="company-team-card-social">
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21412)">
-                                                <path d="M16.8008 4H8.80078C6.59164 4 4.80078 5.79086 4.80078 8V16C4.80078 18.2091 6.59164 20 8.80078 20H16.8008C19.0099 20 20.8008 18.2091 20.8008 16V8C20.8008 5.79086 19.0099 4 16.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 15C14.4576 15 15.8008 13.6569 15.8008 12C15.8008 10.3431 14.4576 9 12.8008 9C11.1439 9 9.80078 10.3431 9.80078 12C9.80078 13.6569 11.1439 15 12.8008 15Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M17.3008 7.5V7.501" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21412">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21417)">
-                                                <path d="M18.8008 4H6.80078C5.69621 4 4.80078 4.89543 4.80078 6V18C4.80078 19.1046 5.69621 20 6.80078 20H18.8008C19.9054 20 20.8008 19.1046 20.8008 18V6C20.8008 4.89543 19.9054 4 18.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 11V16" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 8V8.01" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 16V11" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M16.8008 16V13C16.8008 12.4696 16.5901 11.9609 16.215 11.5858C15.8399 11.2107 15.3312 11 14.8008 11C14.2703 11 13.7616 11.2107 13.3866 11.5858C13.0115 11.9609 12.8008 12.4696 12.8008 13" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21417">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="company-team-card">
-                            <img src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6487e849805ae1943180bd84_Company%20Team%20Avatar%205.png" loading="lazy" alt="Jobhuntly Company Teams" class="company-team-card-avatar"/>
-                            <div class="company-team-card-name">
-                                <div class="text-l weight-600 text-neutral-100">Célestin Gardinier</div>
-                                <div class="text-r text-neutral-60">CEO &amp;Co-Founder</div>
-                            </div>
-                            <div class="company-team-card-social">
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21412)">
-                                                <path d="M16.8008 4H8.80078C6.59164 4 4.80078 5.79086 4.80078 8V16C4.80078 18.2091 6.59164 20 8.80078 20H16.8008C19.0099 20 20.8008 18.2091 20.8008 16V8C20.8008 5.79086 19.0099 4 16.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 15C14.4576 15 15.8008 13.6569 15.8008 12C15.8008 10.3431 14.4576 9 12.8008 9C11.1439 9 9.80078 10.3431 9.80078 12C9.80078 13.6569 11.1439 15 12.8008 15Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M17.3008 7.5V7.501" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21412">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                                <a href="#" class="w-inline-block">
-                                    <div class="svg-icon w-embed">
-                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.5" clip-path="url(#clip0_1717_21417)">
-                                                <path d="M18.8008 4H6.80078C5.69621 4 4.80078 4.89543 4.80078 6V18C4.80078 19.1046 5.69621 20 6.80078 20H18.8008C19.9054 20 20.8008 19.1046 20.8008 18V6C20.8008 4.89543 19.9054 4 18.8008 4Z" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 11V16" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.80078 8V8.01" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M12.8008 16V11" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M16.8008 16V13C16.8008 12.4696 16.5901 11.9609 16.215 11.5858C15.8399 11.2107 15.3312 11 14.8008 11C14.2703 11 13.7616 11.2107 13.3866 11.5858C13.0115 11.9609 12.8008 12.4696 12.8008 13" stroke="#515B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_1717_21417">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.800781)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>

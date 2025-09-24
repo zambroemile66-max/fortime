@@ -41,7 +41,7 @@ class Job extends Model{
         return $result ? (int)$result->total_jobs : 0;
     }
     public function getJobsAdmin(): array{
-        $sql = "SELECT type,posted_on,title,apply_before FROM $this->table WHERE company_id = ?";
+        $sql = "SELECT type,posted_on,title,apply_before,id FROM $this->table WHERE company_id = ?";
         $stmt = $this->db->getPDO()->prepare($sql);
         $stmt->execute([(new Company($this->db))->getCompanyId($_SESSION['auth']['admin']['id'])->id]);
         return $stmt->fetchAll();
@@ -86,5 +86,10 @@ class Job extends Model{
             ":skills" => $data['skills']
         ]);
 
+    }
+    public function jobDestroy(string $id){
+        $sql = "DELETE FROM $this->table WHERE id = ?";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->execute([$id]);
     }
 }

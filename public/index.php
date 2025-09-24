@@ -15,7 +15,7 @@ $router->get('', 'App\Controllers\BlogController@homePage');
 
 $router->get('jobs-details/:id', 'App\Controllers\JobController@jobsDetailsPage');
 $router->get('job-application/:id', 'App\Controllers\JobController@jobApplicationPage');
-$router->post('job-application', 'App\Controllers\JobController@jobApplication');
+$router->post('job-application', 'App\Controllers\ApplicationController@jobApplication');
 $router->get('find-jobs', 'App\Controllers\JobController@findJobsPage');
 $router->get('search', 'App\Controllers\JobController@searchPage');
 
@@ -36,14 +36,19 @@ $router->post('admin/company-profile/profile-picture', 'App\Controllers\Admin\Co
 $router->post('admin/company-profile/profile-info', 'App\Controllers\Admin\CompanyProfileController@updateCompanyInfo');
 $router->post('admin/company-profile/profile-more-info', 'App\Controllers\Admin\CompanyProfileController@updateCompanyMoreInfo');
 $router->get('admin/applicants', 'App\Controllers\Admin\ApplicantController@applicantPage');
+$router->post('admin/applicants/destroy', 'App\Controllers\Admin\ApplicantController@applicantDestroy');
+$router->get('admin/applicants/:id', 'App\Controllers\Admin\ApplicantController@applicantDetails');
+$router->get('admin/applicants/add/:id', 'App\Controllers\Admin\ApplicantController@createApplicant');
 $router->get('admin/emails', 'App\Controllers\Admin\ApplicationController@emailPage');
 $router->get('admin/email-view/:id', 'App\Controllers\Admin\ApplicationController@emailViewPage');
+$router->get('admin/email-view/destroy/:id', 'App\Controllers\Admin\ApplicationController@emailViewDelete');
 $router->get('admin/jobs', 'App\Controllers\Admin\JobController@jobListingPage');
+$router->post('admin/jobs/destroy', 'App\Controllers\Admin\JobController@jobListingDestroy');
 $router->get('admin/job-publish', 'App\Controllers\Admin\JobController@jobPublishPage');
 $router->post('admin/job-publish', 'App\Controllers\Admin\JobController@jobPublish');
 
 $router->get('user-profile/:id','App\Controllers\UserProfileController@userProfilePage');
-
+$router->post('user-profile','App\Controllers\UserProfileController@updateUserPicture');
 try {
     $router->run();
 } catch (NotFoundException $e) {

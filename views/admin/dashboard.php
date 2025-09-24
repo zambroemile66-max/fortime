@@ -2,10 +2,10 @@
     <div class="dashboard-page-header">
         <h2>Dashboard</h2>
     </div>
-    <div class="_4-grid">
+    <div class="_3-grid">
         <div class="module blue">
             <div class="module-header minimal">
-                <h3 class="module-heading">Jobs Opened</h3>
+                <h3 class="module-heading">Jobs Created</h3>
             </div>
             <div class="module-main">
                 <div class="module-number blue"><?=$params['count_jobs']?></div>
@@ -13,10 +13,10 @@
         </div>
         <div class="module">
             <div class="module-header minimal">
-                <h3 class="module-heading">New Candidates</h3>
+                <h3 class="module-heading">New Applicants</h3>
             </div>
             <div class="module-main">
-                <div class="module-number">12</div>
+                <div class="module-number"><?=$params['count_applicants']?></div>
             </div>
         </div>
         <div class="module">
@@ -24,15 +24,7 @@
                 <h3 class="module-heading">Emails receved</h3>
             </div>
             <div class="module-main">
-                <div class="module-number">23</div>
-            </div>
-        </div>
-        <div class="module">
-            <div class="module-header minimal">
-                <h3 class="module-heading">Jobs closed</h3>
-            </div>
-            <div class="module-main">
-                <div class="module-number">8</div>
+                <div class="module-number"><?=$params['count_email']->total_applications?></div>
             </div>
         </div>
     </div>

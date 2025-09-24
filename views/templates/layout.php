@@ -1,9 +1,8 @@
 <?php
+if(isset($_SESSION['auth']['user']['photo']) && $_SESSION['auth']['user']['photo'] === NULL)$_SESSION['auth']['user']['photo'] = 'default-avatar.jpg';
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-?>
-<?php
-    require VIEWS.'components/alert.php';
+require VIEWS.'components/alert.php';
 ?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com -->
@@ -76,7 +75,7 @@ header("Access-Control-Allow-Headers: Content-Type");
                         <?php if(isset($_SESSION['auth']['user']['id'])) :?>
                             <!-- Bootstrap Icons / Classes seulement pour l'avatar -->
                             <a href="/fortime/user-profile/<?=$_SESSION['auth']['user']['id']?>" class="nav-link d-none d-md-inline">
-                                <img src="<?=SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" alt="User" class="rounded-circle" width="45" height="45">
+                                <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$_SESSION['auth']['user']['photo']?>" alt="User" class="rounded-circle" width="45" height="45">
                             </a>
                         <?php endif ?>
                     </div>

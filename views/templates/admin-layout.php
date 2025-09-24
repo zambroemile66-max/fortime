@@ -118,7 +118,7 @@
                                 <a href="../admin/profile" class="profile-menu-link w-nav-link">My Profile</a>
                                 <a href="/settings" class="profile-menu-link w-nav-link">Settings</a>
                                 <div class="menu-divider"></div>
-                                <a href="../login" class="profile-menu-link w-nav-link">Log Out</a>
+                                <a href="../logout" class="profile-menu-link w-nav-link">Log Out</a>
                             </nav>
                         </div>
                     </div>
@@ -219,5 +219,36 @@
     tagsInput: document.getElementById("tagsInput2")
   });
 </script>
+<script>
+    // Checkbox principal
+  const checkAll = document.getElementById("checkAll");
+  // Tous les checkbox de ligne
+  const rowChecks = document.querySelectorAll(".row-check");
+  // Checkbox principal
+  const checkAll2 = document.getElementById("checkAll2");
+  // Tous les checkbox de ligne
+  const rowChecks2 = document.querySelectorAll(".row-check2");
+  // Checkbox principal
+  const checkAll3 = document.getElementById("checkAll3");
+  // Tous les checkbox de ligne
+  const rowChecks3 = document.querySelectorAll(".row-check3");
 
+    function checked(checkAll, rowChecks) {
+        // Quand on clique sur le "check main"
+        checkAll.addEventListener("change", function() {
+            rowChecks.forEach(chk => chk.checked = this.checked);
+        });
 
+        // Si l’utilisateur clique sur une case individuelle
+        rowChecks.forEach(chk => {
+            chk.addEventListener("change", function() {
+            // Si toutes les cases sont cochées => checkAll aussi
+            // Sinon, on le décoche
+            checkAll.checked = [...rowChecks].every(c => c.checked);
+            });
+        });
+    }
+    checked(checkAll, rowChecks);
+    checked(checkAll2, rowChecks2);
+    checked(checkAll3, rowChecks3);
+</script>

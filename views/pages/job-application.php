@@ -1,6 +1,6 @@
 <?php
-    $_POST['job_id'] = $params['jobs_application']->job_id ?? null;
-    $_POST['comp_id'] = $params['jobs_application']->comp_id ?? null;
+    $_SESSION['job_id'] = $params['jobs_application']->job_id ?? null;
+    $_SESSION['job_title'] = $params['jobs_application']->title ?? null;
 ?>
 <section class="section hero-section">
     <div class="w-layout-blockcontainer container job-application-container w-container">
@@ -25,7 +25,7 @@
                 <div class="text-r weight-500 text-neutral-100">Back</div>
             </a>
             <div class="job-application-form w-form">
-                <form id="wf-form-Job-Application-Form" name="wf-form-Job-Application-Form" action="" data-name="Job Application Form" method="post" class="job-application-form-inner" data-wf-page-id="6493c8319c69f3c3041406e4" data-wf-element-id="e325c5db-ec10-9852-690e-28a00f61f64d">
+                <form id="wf-form-Job-Application-Form" name="wf-form-Job-Application-Form" action="/fortime/job-application" enctype="multipart/form-data" data-name="Job Application Form" method="post" class="job-application-form-inner" data-wf-page-id="6493c8319c69f3c3041406e4" data-wf-element-id="e325c5db-ec10-9852-690e-28a00f61f64d">
                     <div class="w-layout-hflex job-application-role">
                         <div class="job-application-company-logo">
                             <img alt="" loading="lazy" src="https://cdn.prod.website-files.com/6480217dd2b60074b15929c5/6481677da664682e7e41fd4f_Nomad%20Logo.svg"/>
@@ -66,10 +66,6 @@
                         <label for="Applicant-Phone-Number">Phone number</label>
                         <input class="job-application-form-input w-input" maxlength="256" name="applicant-phone" data-name="Applicant Phone Number" placeholder="Enter your phone number" type="tel" id="Applicant-Phone-Number" required=""/>
                     </div>
-                    <div class="w-layout-vflex job-application-form-group">
-                        <label for="Applicant-Previous-Job">Current of previous job title</label>
-                        <input class="job-application-form-input w-input" maxlength="256" name="applicant-prev-job" data-name="Applicant Previous Job" placeholder="What’s your current or previous job title?" type="text" id="Applicant-Previous-Job"/>
-                    </div>
                     <div class="horizontal-divider"></div>
                     <h4 class="text-neutral-100 weight-600">LINKS</h4>
                     <div class="w-layout-vflex job-application-form-group">
@@ -78,7 +74,7 @@
                     </div>
                     <div class="w-layout-vflex job-application-form-group">
                         <label for="Applicant-Portofolio">Portfolio</label>
-                        <input class="job-application-form-input w-input" maxlength="256" name="applicant-portofolio" data-name="Applicant Portofolio" placeholder="Link to your portfolio URL" type="file" accept=".pdf" id="Applicant-Portofolio" required=""/>
+                        <input class="job-application-form-input w-input" maxlength="256" name="applicant-portfolio" data-name="Applicant Portofolio" placeholder="Link to your portfolio URL" type="file" accept=".pdf" id="Applicant-Portofolio" required=""/>
                     </div>
                     <div class="w-layout-vflex job-application-form-group">
                         <label for="field">Additional information</label>

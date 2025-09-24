@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 18 sep. 2025 à 12:09
+-- Généré le : mer. 24 sep. 2025 à 15:44
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`id`, `user_id`, `job_id`, `applied_at`, `full_name`, `email`, `phone`, `job_title`, `linkedin_url`, `portfolio_url`, `additional_info`) VALUES
-('0d79f364-93f6-11f0-a013-106530278473', '53eefa8a-931f-11f0-aeef-106530278473', '5fa7738c-9362-11f0-aeef-106530278473', '2025-09-17 19:42:24', 'testuser', 'test@example.com', '+237 657 82 21 89', 'Assistant SEO', 'https://linkedin.com/testuser', 'https://github.io/testuser', 'I\'m fullstack dev');
+('728ea6bd-98c8-11f0-b3dc-106530278473', '53eefa8a-931f-11f0-aeef-106530278473', '150ab293-98c8-11f0-b3dc-106530278473', '2025-09-23 22:58:33', 'Codecraft', 'codecraft@example.com', '12345678', 'Dev fullStack', 'AZZERTTYYU', '68d3180912164_Python_Essentials_1_certificate_danielzklug-gmail-com_f5839ec3-65ce-4b6f-a1f0-aaeda837f273.pdf', 'AZERTYUI');
 
 --
 -- Déclencheurs `application`
@@ -82,8 +82,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `user_id`, `name`, `logo_url`, `website`, `founded_date`, `location`, `industry`, `description`, `tech_stack`) VALUES
-('87285b1e-9333-11f0-aeef-106530278473', NULL, 'Codecraft inc', NULL, NULL, NULL, 'Cameroun,Afrique du Sud,Nigeria,Senegal,Congo ', 'Technology', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis placeat tempore necessitatibus quaerat maiores cupiditate earum, fugit illum ipsa laborum pariatur quod blanditiis dolores quos eos beatae eligendi. Natus, exercitationem.', 'HTML5,CSS3,PHP8,JavaScript,TypeScript'),
-('88d68672-931a-11f0-aeef-106530278473', '7594b371-931a-11f0-aeef-106530278473', 'Codecraft corp', NULL, NULL, NULL, NULL, NULL, 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque vero facere deleniti unde esse placeat?', NULL);
+('88d68672-931a-11f0-aeef-106530278473', '7594b371-931a-11f0-aeef-106530278473', 'Codecraft corp', '68d316d87de8b_493736402_122132246456789506_5815203807398932455_n.jpg', 'https://github.com/DanielZklug', '2025-09-21', 'Cameroon,Germany', 'Technology', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, non cumque. Deserunt, unde cumque? Nemo nesciunt, velit enim odio reiciendis molestiae officia dicta laborum eius ducimus blanditiis commodi amet, error nisi doloribus praesentium, esse tempora veritatis at pariatur deleniti saepe quis et. Incidunt ex possimus asperiores saepe suscipit! Odit cupiditate reiciendis qui amet expedita tenetur, inventore facere? Atque officia corrupti fugit, recusandae cumque magni quibusdam quidem doloribus non facere corporis! Eius autem obcaecati sunt unde fugit sed porro sapiente consequatur perspiciatis! Ad ipsum minus dicta, nesciunt vitae fuga rerum maiores cupiditate et, iure, libero consequatur deleniti alias minima! Sequi, excepturi.\r\n', 'HTML5,CSS3,PHP8,JavaScript,TypeScript,Angular,Laravel,Ionic');
 
 --
 -- Déclencheurs `company`
@@ -111,17 +110,8 @@ CREATE TABLE `job` (
   `salary` varchar(100) DEFAULT NULL,
   `posted_on` date DEFAULT current_timestamp(),
   `apply_before` date DEFAULT NULL,
-  `skills` text DEFAULT NULL,
-  `category` text NOT NULL
+  `skills` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `job`
---
-
-INSERT INTO `job` (`id`, `company_id`, `title`, `description`, `location`, `type`, `salary`, `posted_on`, `apply_before`, `skills`, `category`) VALUES
-('5fa7738c-9362-11f0-aeef-106530278473', '87285b1e-9333-11f0-aeef-106530278473', 'UX/UI Developper\r\n', 'Lorem ipsum dolor sit amet consectetur adipisicing...', 'Bangui,RCA', 'CDI', '100000', '2025-09-17', '2025-09-27', 'Project,Copywriting,Social,Media,Marketing,English,Copy Editing', 'Hacking,Coding,AI programming'),
-('cb3fc663-933f-11f0-aeef-106530278473', '87285b1e-9333-11f0-aeef-106530278473', 'Assistant SEO', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde sed cupiditate nobis at eos facere.', 'Yaoundé,Cameroun', 'CDD', 'Stage professionnel', '2025-09-16', '2025-09-30', NULL, 'Programming,Web Marketing');
 
 --
 -- Déclencheurs `job`
@@ -141,10 +131,10 @@ DELIMITER ;
 
 CREATE TABLE `team_member` (
   `id` char(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
   `role` varchar(255) DEFAULT NULL,
-  `avatar_url` varchar(512) DEFAULT NULL,
-  `company_id` char(36) DEFAULT NULL
+  `company_id` char(36) DEFAULT NULL,
+  `user_id` varchar(254) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -165,6 +155,7 @@ DELIMITER ;
 
 CREATE TABLE `user` (
   `id` char(36) NOT NULL,
+  `photo` varchar(200) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
@@ -175,9 +166,9 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `password_hash`, `type`) VALUES
-('53eefa8a-931f-11f0-aeef-106530278473', 'Codecraft', 'codecraft@example.com', '$2y$10$P4pDsDeeYrEsujnPAa1xoemPzhhpqhzdQYhwlE/NHN8EpNir44z2m', 'job_seeker'),
-('7594b371-931a-11f0-aeef-106530278473', 'testuser', 'test@example.com', '$2y$10$powzXmelQceMnSIjbv3IuurPQLE/rtYLaV7Ew5zChuo2/Pg8CPq1u', 'company');
+INSERT INTO `user` (`id`, `photo`, `name`, `email`, `password_hash`, `type`) VALUES
+('53eefa8a-931f-11f0-aeef-106530278473', '68d317c9c18b8_OIP.jpg', 'Codecraft', 'codecraft@example.com', '$2y$10$P4pDsDeeYrEsujnPAa1xoemPzhhpqhzdQYhwlE/NHN8EpNir44z2m', 'job_seeker'),
+('7594b371-931a-11f0-aeef-106530278473', '', 'testuser', 'test@example.com', '$2y$10$powzXmelQceMnSIjbv3IuurPQLE/rtYLaV7Ew5zChuo2/Pg8CPq1u', 'company');
 
 --
 -- Déclencheurs `user`
@@ -220,7 +211,9 @@ ALTER TABLE `job`
 --
 ALTER TABLE `team_member`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `company_id` (`company_id`);
+  ADD UNIQUE KEY `user_id_2` (`user_id`),
+  ADD KEY `company_id` (`company_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `user`
@@ -232,13 +225,6 @@ ALTER TABLE `user`
 --
 -- Contraintes pour les tables déchargées
 --
-
---
--- Contraintes pour la table `application`
---
-ALTER TABLE `application`
-  ADD CONSTRAINT `application_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `application_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `job` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `company`
