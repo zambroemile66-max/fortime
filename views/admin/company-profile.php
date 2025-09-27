@@ -5,10 +5,10 @@
     <div class="_1-2-5-grid">
         <div class="module center-align sticky">
             <div class="profile-image large">
-                <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$params['company']->logo_url ?? SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
+                <img src="<?=is_null($params['company']) ? SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.'default-avatar.jpg' : SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$params['company']->logo_url?>" loading="lazy" alt="" class="cover-image"/>
             </div>
-            <h3 class="no-margin"><?=$params['company']->name?></h3>
-            <h5><?=$params['company']->industry?></h5>
+            <h3 class="no-margin"><?=$params['company']->name ?? null?></h3>
+            <h5><?=$params['company']->industry ?? null?></h5>
             <div class="profile-buttons-div"></div>
         </div>
         <div class="module-group">
@@ -99,23 +99,23 @@
                         <form id="email-form"  action="company-profile/profile-info" method="post" data-name="Email Form" class="form">
                             <div class="field-block">
                                 <label for="name">Company Name</label>
-                                <input type="text" class="text-input filled w-input" maxlength="256" name="comp_name" data-name="Name" value="<?=$params['company']->name?>" required=""/>
+                                <input type="text" class="text-input filled w-input" maxlength="256" name="comp_name" data-name="Name" value="<?=$params['company']->name ?? null?>" required=""/>
                             </div>
                             <div class="field-block">
                                 <label for="website">Company Website</label>
-                                <input type="url" class="text-input filled w-input" maxlength="256" name="comp_web" data-name="Name" value="<?=$params['company']->website?>"/>
+                                <input type="url" class="text-input filled w-input" maxlength="256" name="comp_web" data-name="Name" value="<?=$params['company']->website ?? null?>"/>
                             </div>
                             <div class="field-block">
                                 <label for="Username">Founded</label>
-                                <input type="date" class="text-input filled w-input" maxlength="256" name="founded" data-name="Username" value="<?=$params['company']->founded_date?>" required=""/>
+                                <input type="date" class="text-input filled w-input" maxlength="256" name="founded" data-name="Username" value="<?=$params['company']->founded_date ?? null?>" required=""/>
                             </div>
                             <div class="field-block">
                                 <label for="Role">Industry</label>
-                                <input type="text" class="text-input filled w-input" maxlength="256" name="industry" data-name="Role" value="<?=$params['company']->industry?>" id="Role"/>
+                                <input type="text" class="text-input filled w-input" maxlength="256" name="industry" data-name="Role" value="<?=$params['company']->industry ?? null?>" id="Role"/>
                             </div>
                             <div class="field-block">
                                 <label for="Username">Description</label>
-                                <textarea  placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat." maxlength="5000" data-name="Field" name="desc" class="text-area filled w-input"><?=$params['company']->description?></textarea>
+                                <textarea  placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat." maxlength="5000" data-name="Field" name="desc" class="text-area filled w-input"><?=$params['company']->description ?? null?></textarea>
                             </div>
                             <input type="submit" value="Update Profile" data-wait="Please wait..." class="button settings w-button"/>
                         </form>
@@ -142,7 +142,7 @@
                             </div>
                             <div class="field-block">
                                 <div id="tagsContainer" class="text-area filled w-input"></div>
-                                <textarea id="tagsInput" name="tech_stack" hidden><?=$params['company']->tech_stack?></textarea>
+                                <textarea id="tagsInput" name="tech_stack" hidden><?=$params['company']->tech_stack ?? null?></textarea>
                             </div>
                             <div class="field-block">
                                 <label for="Username">Office Location</label>
@@ -151,7 +151,7 @@
                             </div>
                             <div class="field-block">
                                 <div id="tagsContainer2" class="text-area filled w-input"></div>
-                                <textarea id="tagsInput2" name="location" hidden><?=$params['company']->location?></textarea>
+                                <textarea id="tagsInput2" name="location" hidden><?=$params['company']->location ?? null?></textarea>
                             </div>
                             <input type="submit" value="Change" data-wait="Please wait..." class="button settings w-button"/>
                         </form>

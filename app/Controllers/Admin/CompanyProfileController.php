@@ -52,8 +52,8 @@ class CompanyProfileController extends Controller{
 
         return $fileName;
     }
-    public function Company(): object{
-        return (new Company($this->getDB()))->getCompanyId($_SESSION['auth']['admin']['id'] ?? '');
+    public function Company(): ?object{
+        return (new Company($this->getDB()))->getCompanyId($_SESSION['auth']['admin']['id'] ?? '') ;
     }
     public function sanitizeCompanyInfo() {
         htmlspecialchars($_POST['comp_name']);

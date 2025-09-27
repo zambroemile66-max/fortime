@@ -20,7 +20,9 @@ class User extends Model{
         ]);
 
         // Récupère l’ID de l’utilisateur inséré
-        return $this->db->getPDO()->lastInsertId();
+        $stmt = $this->db->getPDO()->prepare("SELECT id FROM user WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetchColumn();
     }
 
     public function checkIfUserExists(string $email){

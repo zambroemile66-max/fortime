@@ -1,4 +1,5 @@
 <?php
+var_dump($_SESSION['auth']['admin']['id']);
 function isDateExceeded($dateString) {
     // Convertit la date donnée en timestamp
     $givenDate = strtotime($dateString);

@@ -8,7 +8,7 @@ class ApplicantController extends Controller
 {
     public function applicantPage()
     {   $companyId = (new CompanyProfileController($this->getDB()))->Company();
-        $applicants = (new Team($this->getDB()))->getAllTeamMember($companyId->id);
+        $applicants = (new Team($this->getDB()))->getAllTeamMember($companyId->id ?? '');
         $this->viewAdmin('admin.applicant',compact('applicants'));
     }
     public function applicantDetails(string $id)
@@ -29,8 +29,8 @@ class ApplicantController extends Controller
             exit;
         }
     }
-    public function countTeamMember(string $id){
-        return (new Team($this->getDB()))->countTeamMember($id);
+    public function countTeamMember(?string $id){
+        return (new Team($this->getDB()))->countTeamMember($id) ?? 0;
     }
     public function applicantDestroy(){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){

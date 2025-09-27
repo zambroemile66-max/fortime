@@ -16,7 +16,7 @@ class Application extends Model{
             return $result;
         }
     }
-    public function countApplications(string $id){
+    public function countApplications(?string $id){
         $sql = "SELECT COUNT(*) AS total_applications FROM $this->table 
         JOIN job ON job.id = $this->table.job_id WHERE job.company_id = ?";
         $stmt = $this->db->getPDO()->prepare($sql);

@@ -110,7 +110,14 @@
                         <div data-hover="" data-delay="0" class="profile-menu-dropdown w-dropdown">
                             <div data-w-id="b24ef7f8-86e5-1c85-e1c5-b65466441b29" class="profile-menu w-dropdown-toggle">
                                 <div class="profile-image">
-                                    <img src="<?=SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$_SESSION['company_logo'] ?? SCRIPTS.'img'.DIRECTORY_SEPARATOR.'default-avatar.jpg'?>" loading="lazy" alt="" class="cover-image"/>
+                                    <?php
+                                        if ($_SESSION['company_logo'] === '') {
+                                            $avatar = SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.'default-avatar.jpg';
+                                        } else {
+                                            $avatar = SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$_SESSION['company_logo'];
+                                        }
+                                    ?>
+                                    <img src="<?= $avatar ?>" loading="lazy" alt="Company logo" class="cover-image"/>
                                 </div>
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023423b0a5988466e83ffb8_CaretDown.svg'?>" loading="lazy" width="15" alt="" class="menu-down"/>
                             </div>

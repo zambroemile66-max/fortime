@@ -16,7 +16,11 @@ class CompanyController extends Controller{
         $this->view('pages.company-details',compact('company_details','team','count_member'));
     }
     public function createCompany($userId) {
-        return (new Company($this->getDB()))->insertCompany($userId);
+        try {
+            (new Company($this->getDB()))->insertCompany($userId);
+        } catch (\Throwable $th) {
+            $_SESSION['error'] = $th->getMessage();
+        }
     }
     public function retrieveCompany(): array{
         return (new Company($this->getDB()))->getCompanies();

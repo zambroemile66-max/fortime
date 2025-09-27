@@ -7,7 +7,7 @@ use App\Exceptions\NotFoundException;
 class Team extends Model{
     protected string $table = 'team_member';
 
-    public function getAllTeamMember(string $id): array{
+    public function getAllTeamMember(?string $id): array{
         $sql = "SELECT team_member.id as id ,role, user.photo, user.name, user.email FROM $this->table
         JOIN user ON team_member.user_id = user.id
         WHERE team_member.company_id = ? AND user.type = 'job_seeker'";
@@ -29,7 +29,7 @@ class Team extends Model{
 
         throw new NotFoundException("applicant");
     }
-    public function countTeamMember(string $id): int{
+    public function countTeamMember(?string $id): int{
         $sql = "SELECT COUNT(*) as count FROM $this->table
         JOIN user ON team_member.user_id = user.id
         WHERE team_member.company_id = ? AND user.type = 'job_seeker'";
@@ -38,7 +38,7 @@ class Team extends Model{
         $result = $stmt->fetch();
 
         if ($result && is_object($result)) {
-            return (int)$result->count;
+            return (int)$result->count ?? 0;
         }
 
         throw new NotFoundException("applicant");

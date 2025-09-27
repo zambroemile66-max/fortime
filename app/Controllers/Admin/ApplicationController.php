@@ -9,7 +9,7 @@ class ApplicationController extends Controller
 {
     public function emailPage(){   
         $companyId = (new CompanyProfileController($this->getDB()))->Company();
-        $applications = (new Application($this->getDB()))->getAllApplications($companyId->id);
+        $applications = (new Application($this->getDB()))->getAllApplications($companyId->id ?? '');
         $this->viewAdmin('admin.emails',compact('applications'));
     }
     public function emailViewPage(string $id){ 
@@ -31,6 +31,6 @@ class ApplicationController extends Controller
     }
     public function countEmail(){
         $companyId = (new CompanyProfileController($this->getDB()))->Company();
-        return (new Application($this->getDB()))->countApplications($companyId->id);
+        return (new Application($this->getDB()))->countApplications($companyId->id ?? '');
     }
 }
